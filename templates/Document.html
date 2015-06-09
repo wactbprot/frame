@@ -1,0 +1,40 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Certificate</th>
+      <th>Issue</th>
+      <th>Year</th>
+      <th>Customer</th>
+      <th>Device</th>
+      <th>ToDoType</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each Document}}
+    <tr>
+      <td>{{Id}}</td>
+      <td>{{Certificate}}</td>
+      <td>{{Issue}}</td>
+      <td>{{Year}}</td>
+      <td>{{Customer}}</td>
+      <td>{{Device}}</td>
+      <td>{{ToDoType}}</td>
+      <td><button class = 'exchange-button'
+                  data-cmd ='load'
+		  data-method = 'PUT'
+                  data-api ='/{{../mpid}}/id/{{Id}}'
+                  >+</button>
+      </td>
+      <td><button class = 'exchange-button'
+                  data-cmd ='load'
+		  data-method = 'PUT'
+                  data-api ='/{{../mpid}}/id/{{Id}}'
+		  type='submit'>-</button>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
