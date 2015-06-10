@@ -1,23 +1,25 @@
-<div class='row'>
-{{#each taskstate}}
-<div class='col-sm-4 serial panel panel-primary'>
-  <div  class='panel-heading'>
-    <h3 class='panel-title'>Step: {{@index}}</h3>
-  </div>
-  <div class='panel-body'>
-    {{#each step}}
-    <div class='parallel {{State}} panel panel-default' >
+<div class='state row' data-path='/{{mpid}}/{{no}}/state'>
+  {{#each taskstate}}
+  <div class='col-sm-4'>
+    <div class='serial panel panel-primary'>
       <div  class='panel-heading'>
-        <h3 class='panel-title'>{{TaskName}}</h3>
+	<h3 class='panel-title'>Step: {{@index}}</h3>
       </div>
       <div class='panel-body'>
-        <b>State:</b> {{State}}<br>
-        <b>Descr.:</b> {{Comment}}<br>
-        <b>Action:</b> {{Action}}<br>
+	{{#each step}}
+	<div class='parallel {{State}} panel panel-default' >
+	  <div  class='panel-heading'>
+            <h3 class='panel-title'>{{TaskName}}</h3>
+	  </div>
+	  <div class='panel-body'>
+            <b>State:</b> {{State}}<br>
+            <b>Descr.:</b> {{Comment}}<br>
+            <b>Action:</b> {{Action}}<br>
+	  </div>
+	</div>
+	{{/each}}
       </div>
     </div>
-    {{/each}}
   </div>
-</div>
-{{/each}}
+  {{/each}}
 </div>
