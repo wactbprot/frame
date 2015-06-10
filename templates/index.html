@@ -10,41 +10,39 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button class="navbar-toggle collapsed"
-                  aria-controls="navbar"
-                  aria-expanded="false"
-                  data-target="#navbar"
-                  data-toggle="collapse" type="button">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">frame@{{mpid}}</a>
+          <a class="navbar-brand" href="#">{{name}}</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active">
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <a href="#about">About</a>
-            </li>
-            <li>
-              <a href="#contact">Contact</a>
-            </li>
+            {{#container.Title}}
+	    <li class="nav">
+            <ul>
+              <li>
+                <label >{{.}}</label>
+              </li>
+              <li>
+                <a href="/{{../mpid}}/{{@index}}/elements/frame">elements</a>
+              </li>
+              <li>
+                <a href="/{{../mpid}}/{{@index}}/state/frame">state</a>
+              </li>
+            </ul>
+	    </li>
+            {{/container.Title}}
           </ul>
         </div>
     </nav>
+
     <div class="jumbotron">
-      <h1>{{no}} {{struct}}</h1>
-      <p></p>
+      <h1>{{struct}} of container {{no}}</h1>
+      <p>{{description}}</p>
     </div>
-    <div class="container">
-      <a href="/{{mpid}}/{{no}}/{{struct}}" > /{{mpid}}/{{no}}/{{struct}}</a>
+    <div class="container">   
+      <a id="content_link" href="/{{mpid}}/{{no}}/{{struct}}" > /{{mpid}}/{{no}}/{{struct}}</a>
     </div>
-    
+
     <script src="/js/jquery-2.1.4.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/frame.js"></script>
   </body>
 </html>

@@ -22,17 +22,17 @@
       <td>{{Customer}}</td>
       <td>{{Device}}</td>
       <td>{{ToDoType}}</td>
-      <td><button class = 'exchange-button'
+      <td><button class = 'exchange-button btn btn-sm btn-success'
                   data-cmd ='load'
 		  data-method = 'PUT'
                   data-api ='/{{../mpid}}/id/{{Id}}'
-                  >+</button>
+                  >add</button>
       </td>
-      <td><button class = 'exchange-button'
-                  data-cmd ='load'
+      <td><button class = 'exchange-button btn btn-sm btn-danger'
+                  data-cmd ='remove'
 		  data-method = 'PUT'
                   data-api ='/{{../mpid}}/id/{{Id}}'
-		  type='submit'>-</button>
+		  type='submit'>remove</button>
       </td>
     </tr>
     {{/each}}
