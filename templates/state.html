@@ -1,0 +1,15 @@
+<h2>Container: {{no}}</h2>
+{{#each taskstate}}
+<div class='serial'>
+  {{#each step}}
+  <div class='parallel {{State}}' >
+    <h3>{{TaskName}}: {{State}}</h3>
+    <p>
+      <b>Descr.:</b> {{Comment}}<br>
+      <b>Action:</b> {{Action}}<br>
+    </p>
+  </div>
+  {{/each}}
+</div>
+{{/each}}
+  

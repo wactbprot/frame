@@ -17,14 +17,11 @@
 	"cheerio":">=0.17.0"
     },
     "scripts": {
-        "doc":"dox-foundation --source ./ --target doc/ --ignore coverage,test,node_modules -t frame",
         "frame": "bin/frame | bunyan -l info"
     },
     "devDependencies": {
         "mocha":">=2.2.5",
-        "istanbul":">=0.3.14",
-        "dox-foundation":">=0.5.6",
-        "prettyjson": ">=1.1.2"
+        "istanbul":">=0.3.14"
     },
     "optionalDependencies": {},
     "engines": {
