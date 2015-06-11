@@ -26,17 +26,20 @@
     var $poll =  $(".poll")
       , L = $poll.length
     if( L > 0){
-      for(var i = 0; i < L; i++){
+      for(var i = M; i < L; i++){
         if(M > L){
-          M = 0;
-          N = O;
-        }
-        if(i < N && i >= M){
+            M = 0;
+            N = O;
+          }
+        if(i <= N && i >= M){
           var path = $poll.eq(i).data("path");
-          $.get( path, function( html ) {
-            $poll.eq(i).parent().replaceWith( html );
-          });
-        }else{
+          $.get( path, function(j){
+                         return  function( html ) {
+                           $poll.eq(j).parent().replaceWith( html );
+                         }
+                       }(i));
+        }
+        if(i > N){
           M = M + O
           N = N + O
           break;
