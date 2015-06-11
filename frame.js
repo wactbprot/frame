@@ -40,8 +40,33 @@ var frame = function(){
     res.writeHead(200, {
       'Content-Type': 'text/html'
     });
-    coll.get_elements(req, function(jsn){
+    coll.elements(req, function(jsn){
       jsnhtml.elements(req, jsn, function(html){
+        res.write(html);
+        res.end();
+      });
+    });
+    next();
+  });
+
+  server.get("/:id/exchange/:exchkey", function(req, res, next){
+    res.writeHead(200, {
+      'Content-Type': 'text/html'
+    });
+    coll.exch(req, function(jsn){
+      jsnhtml.element(req, jsn, function(html){
+        res.write(html);
+        res.end();
+      });
+    });
+    next();
+  });
+  server.get("/:id/exchange/:exchkey/:subkey", function(req, res, next){
+    res.writeHead(200, {
+      'Content-Type': 'text/html'
+    });
+    coll.exch(req, function(jsn){
+      jsnhtml.elem(req, jsn, function(html){
         res.write(html);
         res.end();
       });
@@ -53,7 +78,7 @@ var frame = function(){
     res.writeHead(200, {
       'Content-Type': 'text/html'
     });
-    coll.get_task_state(req, function(jsn){
+    coll.task_state(req, function(jsn){
       jsnhtml.task_state(req, jsn, function(html){
         res.write(html);
         res.end();
@@ -61,11 +86,12 @@ var frame = function(){
     });
     next();
   });
+
   server.get("/:id/:container/:struct/frame", function(req, res, next){
     res.writeHead(200, {
       'Content-Type': 'text/html'
     });
-    coll.get_mp(req, function(jsn){
+    coll.meta(req, function(jsn){
       jsnhtml.frame(req, jsn, function(html){
         res.write(html);
         res.end();
@@ -73,6 +99,7 @@ var frame = function(){
     });
     next();
   });
+
 
   server.listen(deflt.frame.port, function() {
   });
