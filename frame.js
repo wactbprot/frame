@@ -1,10 +1,10 @@
 var frame = function(){
   var prog    = require("commander")
     , _       = require("underscore")
-
     , restify = require("restify")
     , coll    = require("./lib/collections")
     , jsnhtml = require("./lib/jsnhtml")
+    , receive = require("./lib/receive")
     , deflt   = require("./lib/default")
 
     , mem     = require("ndata").createClient({port: deflt.mem.port})
@@ -35,6 +35,18 @@ var frame = function(){
     'directory': __dirname
   }));
 
+  server.put("/:id/exchange/:l1/:l2", function(req, res, next){
+    res.writeHead(200, {
+      'Content-Type': 'text/html'
+    });
+    receive.exch(req, function(jsn){
+      jsnhtml.elements(req, jsn, function(html){
+        res.write(html);
+        res.end();
+      });
+    });
+    next();
+  });
 
   server.get("/:id/:container/elements", function(req, res, next){
     res.writeHead(200, {
