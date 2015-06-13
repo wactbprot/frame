@@ -9,11 +9,8 @@
     });
   });
 
-
-
-
+  // poll state
   setInterval(function(){
-    // poll state
     var $state =  $(".state");
     if($state.length > 0){
       var path = $state.data("path")
@@ -22,7 +19,6 @@
       });
     }
   }, 500)
-
 
   // poll elements
   var i = 0;
@@ -37,19 +33,19 @@
                        var $html = $(html)
 
                        if($html.children().hasClass("poll")){
-
+                         // poll off on focus in
                          $html.children(".poll").focusin( function(e){
                            $html.children(".poll")
                            .removeClass("poll")
                            .addClass("usrinput")
                          });
-
+                         // poll on on focus out
                          $html.children(".poll").focusout( function(e){
                            $html.children(".usrinput")
                            .removeClass("usrinput")
                            .addClass("poll")
                          });
-
+                         // send value back on changes
                          $html.children(".poll").change( function(e){
                            var $html_child = $html.children(".usrinput,.poll")
                              , value        = $html_child.val()
