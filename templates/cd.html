@@ -2,9 +2,20 @@
   <ul>
     {{#cdid}}
     {{#if Certificate}}
-    <li class="text-muted">Certificate: <b>{{Certificate}}</b>,
-      Issue: <b>{{Issue}}</b>, Customer: <b>{{Customer}}</b>,
-      Device: <b>{{Device}}</b>, ToDo: <b>{{ToDoType}}</b></li>
+    <li class="text-muted">
+      <label>
+	Certificate: <b>{{Certificate}}</b>,
+	Issue: <b>{{Issue}} </b>
+      </label>
+      <a target='_blank'
+	  title="Customer: {{Customer}}, Device:{{Device}}, ToDo:
+				      {{ToDoType}}"
+	 href='http://localhost:5984/_utils/document.html?vl_db/{{Id}}'>F</a>
+      <a target='_blank'
+	  title="Customer: {{Customer}}, Device:{{Device}}, ToDo:
+				      {{ToDoType}}"
+	 href='http://localhost:5984/vl_db/applications/diwan2.html?id={{Id}}'>D</a>
+    </li>
     {{else}}
     <li> no document loaded</li>
     {{/if}}
