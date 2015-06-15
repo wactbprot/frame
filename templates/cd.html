@@ -1,0 +1,13 @@
+<div class='cdid' data-path='/{{mpid}}/id'>
+  <ul>
+    {{#cdid}}
+    {{#if Certificate}}
+    <li class="text-muted">Certificate: <b>{{Certificate}}</b>,
+      Issue: <b>{{Issue}}</b>, Customer: <b>{{Customer}}</b>,
+      Device: <b>{{Device}}</b>, ToDo: <b>{{ToDoType}}</b></li>
+    {{else}}
+    <li> no document loaded</li>
+    {{/if}}
+    {{/cdid}}
+  </ul>
+</div>

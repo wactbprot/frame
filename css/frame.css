@@ -1,0 +1,19 @@
+.executed {
+    opacity: 0.8;
+    background: #D7DF01;
+}
+
+.ready {
+    opacity: 0.7;
+    background: #5FB404;
+}
+
+.working {
+    opacity: 0.8;
+    background: #f0ad4e;
+}
+
+.error {
+    opacity: 0.8;
+    background:#d9534f;
+}

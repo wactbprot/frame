@@ -1,17 +1,17 @@
 <div class='state row' data-path='/{{mpid}}/{{no}}/state'>
   {{#each taskstate}}
   <div class='col-sm-4'>
-    <div class='serial panel panel-primary'>
+    <div class='serial panel panel-default'>
       <div  class='panel-heading'>
 	<h3 class='panel-title'>Step: {{@index}}</h3>
       </div>
       <div class='panel-body'>
 	{{#each step}}
-	<div class='parallel {{State}} panel panel-default' >
-	  <div  class='panel-heading'>
+	<div class='parallel  panel panel-default' >
+	  <div  class='panel-heading {{State}}'>
             <h3 class='panel-title'>{{TaskName}}</h3>
 	  </div>
-	  <div class='panel-body'>
+	  <div class='panel-body {{State}}'>
             <b>State:</b> {{State}}<br>
             <b>Descr.:</b> {{Comment}}<br>
             <b>Action:</b> {{Action}}<br>

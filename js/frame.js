@@ -2,12 +2,41 @@
 
   // once at the begining
   var $content_link =  $("#content_link")
-  var url = $content_link.attr("href")
-  $.get( url, function( html ) {
+  $.get( $content_link.attr("href"), function( html ) {
     $content_link.replaceWith( function() {
       return $(html).hide().fadeIn(300);
     });
   });
+
+  var $cdid_link =  $("#cdid_link")
+  $.get( $cdid_link.attr("href"), function( html ) {
+    $cdid_link.replaceWith( function() {
+      return $(html).hide().fadeIn(300);
+    });
+  });
+
+  // exchange buttons
+  $(document).on('click', '.exchange-button', function(){
+    var $this = $(this)
+      , path    = $this.data("path")
+      , method = $this.data("method")
+      , cmd    = $this.data("cmd");
+    $.ajax({
+      method: method,
+      url: path,
+      data: "" + cmd
+    });
+  });
+
+  // poll cdid
+  setInterval(function(){
+    var $cdid =  $(".cdid");
+      var path = $cdid.data("path")
+      $.get( path, function( html ) {
+        $cdid.replaceWith( html );
+      });
+
+  }, 500)
 
   // poll state
   setInterval(function(){
@@ -50,12 +79,12 @@
                            var $html_child = $html.children(".usrinput,.poll")
                              , value        = $html_child.val()
                              , path         = $html_child.data("path");
-                           alert(value)
+
                            $.ajax({
                              method: "PUT",
                              url: path,
                              data: value
-                           })
+                           });
                          });
 
                        }

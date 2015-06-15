@@ -6,6 +6,7 @@
   </head>
   <body>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/frame.css">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -34,8 +35,16 @@
     </nav>
     <div class="container">   
       <div class="jumbotron">
-	<h2>{{struct}} of container {{no}}</h2>
-	<p>{{description}}</p>
+	<div class="row">
+	    <h3>{{struct}} of container {{no}}</h3>	 
+	  <div class="col-md-3">
+	    {{description}}
+	  </div>
+	  <div class="col-md-9">
+	    <a id="cdid_link" href="/{{mpid}}/id" >
+	      /{{mpid}}/id</a>
+	  </div>
+	</div>
       </div>
     </div>
     <div class="container">   

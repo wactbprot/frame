@@ -36,17 +36,19 @@ var frame = function(){
   }));
 
   server.put("/:id/exchange/:l1/:l2", function(req, res, next){
-    res.writeHead(200, {
-      'Content-Type': 'text/html'
-    });
-    receive.exch(req, function(jsn){
-      jsnhtml.elements(req, jsn, function(html){
-        res.write(html);
-        res.end();
-      });
+    receive.exch(req, function(){
+      res.end();
     });
     next();
   });
+
+  server.put("/:mpid/id/:cdid", function(req, res, next){
+    receive.cdhandle(req, function(){
+      res.end();
+    });
+    next();
+  });
+
 
   server.get("/:id/:container/elements", function(req, res, next){
     res.writeHead(200, {
@@ -73,6 +75,7 @@ var frame = function(){
     });
     next();
   });
+
   server.get("/:id/exchange/:exchkey/:subkey", function(req, res, next){
     res.writeHead(200, {
       'Content-Type': 'text/html'
@@ -105,6 +108,19 @@ var frame = function(){
     });
     coll.meta(req, function(jsn){
       jsnhtml.frame(req, jsn, function(html){
+        res.write(html);
+        res.end();
+      });
+    });
+    next();
+  });
+
+  server.get("/:id/id", function(req, res, next){
+    res.writeHead(200, {
+      'Content-Type': 'text/html'
+    });
+    coll.cdid(req, function(jsn){
+      jsnhtml.cdid(req, jsn, function(html){
         res.write(html);
         res.end();
       });
