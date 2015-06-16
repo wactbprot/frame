@@ -35,7 +35,7 @@ var frame = function(){
     'directory': __dirname
   }));
 
-  server.put("/:id/exchange/:l1/:l2", function(req, res, next){
+  server.put("/:mpid/exchange/:l1/:l2", function(req, res, next){
     receive.exch(req, function(){
       res.end();
     });
@@ -49,6 +49,12 @@ var frame = function(){
     next();
   });
 
+  server.put("/:mpid/:no/ctrl", function(req, res, next){
+    receive.ctrl(req, function(){
+      res.end();
+    });
+    next();
+  });
 
   server.get("/:id/:container/elements", function(req, res, next){
     res.writeHead(200, {

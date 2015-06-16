@@ -7,48 +7,77 @@
   <body>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/frame.css">
-    
+
     <nav class="navbar navbar-inverse  navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand">{{name}}</a>
+          <a class="navbar-brand">{{name}} </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav">
-            {{#container.Title}}
-	    <li class="nav navbar-nav">
-            <ul>
-              <li>
-                <label >{{.}}</label>
-              </li>
-              <li>
-                <a href="/{{../mpid}}/{{@index}}/elements/frame">elements</a>
-              </li>
-              <li>
-                <a href="/{{../mpid}}/{{@index}}/state/frame">state</a>
-              </li>
-            </ul>
+          <ul class="nav navbar-nav">
+	    {{#container.Title}}
+	    <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+		 aria-expanded="false">{{.}}<span class="caret">
+		</span>
+	      </a>
+              <ul class="dropdown-menu" role="menu">
+		<li>
+		  <a href="/{{../mpid}}/{{@index}}/elements/frame">elements</a>
+		</li>
+                <li>
+                  <a href="/{{../mpid}}/{{@index}}/state/frame">state</a>
+                </li>
+	      </ul>
 	    </li>
-            {{/container.Title}}
+	    {{/container.Title}}
           </ul>
+	  <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+		 role="button" aria-expanded="false">Controlls
+		<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+		<li>
+		  <button class = 'exchange-button btn btn-sm btn-default'
+			  data-cmd ='load;run'
+			  data-method = 'PUT'
+			  data-path ='/{{mpid}}/{{no}}/ctrl'>
+		    load
+		  </button>
+		</li>
+		<li>
+		  <button class = 'exchange-button btn btn-sm btn-default'
+			  data-cmd ='stop'
+			  data-method = 'PUT'
+			  data-path ='/{{mpid}}/{{no}}/ctrl'>
+		    stop
+		  </button>
+		</li>
+	      </ul>
+            </li>
+	  </ul>
         </div>
-    </nav>
-    <br>
-    <div class="container breadcrumb page-header">   
-      <div class="col-md-8">
-	<h4>Description</h4>
-	{{description}}
       </div>
+    </nav>
+    <div class="container breadcrumb page-header">
       <div class="col-md-4">
-	<h4>Selected Calibration Documents</h4>
-	<a id="cdid_link" href="/{{mpid}}/id" >
-	  /{{mpid}}/id</a>
+        <h4>Selected Calibration Documents</h4>
+        <a id="cdid_link" href="/{{mpid}}/id" >
+          /{{mpid}}/id</a>
+      </div>
+      <div class="col-md-6">
+        <h4>Description</h4>
+        {{description}}
+      </div>
+      <div class="col-md-2">
+
       </div>
     </div>
-    <div class="container">   
+    <div class="container">
       <a id="content_link" href="/{{mpid}}/{{no}}/{{struct}}" > /{{mpid}}/{{no}}/{{struct}}</a>
     </div>
-    
+
     <script src="/js/jquery-2.1.4.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/frame.js"></script>
