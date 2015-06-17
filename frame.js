@@ -34,6 +34,9 @@ var frame = function(){
   server.get( "/js/:file", restify.serveStatic({
     'directory': __dirname
   }));
+  server.get( "/favicon.ico", restify.serveStatic({
+    'directory': __dirname
+  }));
 
   server.put("/:mpid/exchange/:l1/:l2", function(req, res, next){
     receive.exch(req, function(){
