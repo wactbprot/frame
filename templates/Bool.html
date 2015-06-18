@@ -1,0 +1,11 @@
+<section>
+{{#if Bool}}
+<div class="poll alert alert-success"
+     data-path="/{{mpid}}/exchange/{{exchkey}}/Bool" 
+     role="alert">{{exchkey}}</div>
+{{else}}
+<div class="poll alert alert-danger" 
+     data-path="/{{mpid}}/exchange/{{exchkey}}/Bool"  
+     role="alert">{{exchkey}}</div>
+{{/if}}
+</section>
