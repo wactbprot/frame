@@ -27,6 +27,18 @@
     });
   });
 
+  // exchange select
+  $(document).on('click', '.exchange-select', function(){
+      var $this = $(this)
+      , path    = $this.data("path")
+      , value   = $this.children( "option:selected" ).val()
+      $.ajax({
+	  method: "PUT",
+	  url: path,
+	  data: "" + value
+      });
+  });
+
   // poll cdid
   setInterval(function(){
     var $cdid =  $(".cdid");

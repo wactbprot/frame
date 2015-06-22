@@ -1,5 +1,7 @@
-<select class="form-control">
-{{#each Select}}
-  <option>{{display}}</option>
-{{/each}}
+<select class="exchange-select form-control"  
+	data-path="/{{mpid}}/exchange/{{exchkey}}/Selected">
+ <option>select ...</option>
+  {{#each Select}}
+  <option value="{{value}}">{{display}}</option>
+  {{/each}}
 </select>
