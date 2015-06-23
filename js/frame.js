@@ -20,10 +20,10 @@
       , path    = $this.data("path")
       , method = $this.data("method")
       , cmd    = $this.data("cmd");
-    $.ajax({
-      method: method,
-      url: path,
-      data: "" + cmd
+      $.ajax({
+	  method: method,
+	  url: path,
+	  data: "" + cmd
     });
   });
 

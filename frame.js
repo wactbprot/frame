@@ -39,6 +39,9 @@ var frame = function(){
   }));
 
   server.put("/:mpid/exchange/:l1/:l2", function(req, res, next){
+    res.writeHead(200, {
+      'Content-Type': 'text/html'
+    });
     receive.exch(req, function(){
       res.end();
     });
@@ -46,6 +49,9 @@ var frame = function(){
   });
 
   server.put("/:mpid/id/:cdid", function(req, res, next){
+    res.writeHead(200, {
+      'Content-Type': 'text/html'
+    });
     receive.cdhandle(req, function(){
       res.end();
     });
@@ -53,6 +59,9 @@ var frame = function(){
   });
 
   server.put("/:mpid/:no/ctrl", function(req, res, next){
+    res.writeHead(200, {
+      'Content-Type': 'text/html'
+    });
     receive.ctrl(req, function(){
       res.end();
     });
