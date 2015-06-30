@@ -44,9 +44,34 @@
 			  data-cmd ='load;run'
 			  data-method = 'PUT'
 			  data-path ='/{{mpid}}/{{no}}/ctrl'>
-		    run
+		    load&run
 		  </button>
 		</li>
+		<li>
+		  <button class = 'exchange-button btn btn-sm btn-default'
+			data-cmd ='load'
+			data-method = 'PUT'
+			data-path ='/{{mpid}}/{{no}}/ctrl'>
+		  load
+		</button>
+		</li>
+		<li>
+		  <button class = 'exchange-button btn btn-sm btn-default'
+			data-cmd ='mon'
+			data-method = 'PUT'
+			data-path ='/{{mpid}}/{{no}}/ctrl'>
+		  mon
+		</button>
+		</li>
+		<li>
+		  <button class = 'exchange-button btn btn-sm btn-default'
+			  data-cmd ='run'
+			data-method = 'PUT'
+			data-path ='/{{mpid}}/{{no}}/ctrl'>
+		  run
+		</button>
+		</li>
+
 		<li>
 		  <button class = 'exchange-button btn btn-sm btn-default'
 			  data-cmd ='stop'
