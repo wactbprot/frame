@@ -1,10 +1,9 @@
-<label style="display: inline;">{{exchkey}}
-  <select class="exchange-select form-control"
-	  style="width:200px;"  
-	  data-path="/{{mpid}}/exchange/{{exchkey}}/Selected">
-    <option>select ...</option>
-    {{#each Select}}
-    <option value="{{value}}">{{display}}</option>
-    {{/each}}
-  </select>
-</label>
+<select class="exchange-select form-control"
+	style="width:200px;"  
+	data-path="/{{mpid}}/exchange/{{exchkey}}/Selected">
+  <option>select ...</option>
+  {{#each Select}}
+  <option value="{{value}}">{{display}}</option>
+  {{/each}}
+</select>
+
