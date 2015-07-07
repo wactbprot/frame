@@ -33,12 +33,24 @@
 	    {{/if}}
 	    
 	    {{#if  RunIf}}
-	    <b>StopIf:</b> 
+	    <b>RunIf:</b> 
 	    <a href='http://localhost:8001/{{../../../mpid}}/exchange/{{RunIf}}' target='_blank'>{{RunIf}}
 	    </a> 
 	    <br>
 	    {{/if}}
 	    
+	    {{#if DefinitionClass}}
+	    <b>Definition Class:</b> {{DefinitionClass}}<br>
+	    {{/if}}
+ 
+	    {{#if Repeat}}
+	    <b>Repeat:</b> {{Repeat}}<br>
+	    {{/if}}
+	    
+	    {{#if Wait}}
+	    <b>Wait:</b> {{Wait}} (ms)<br>
+	    {{/if}}
+	   
 	    {{#if Comment}}
 	    <b>Descr.:</b> {{Comment}}<br>
 	    {{/if}}

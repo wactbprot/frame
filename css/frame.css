@@ -17,3 +17,8 @@
     opacity: 0.8;
     background:#d9534f;
 }
+
+.unloaded {
+    opacity: 0.4;
+    background: #D7DF01;
+}
