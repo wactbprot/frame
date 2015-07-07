@@ -12,39 +12,41 @@
             <h3 class='panel-title'>{{TaskName}}</h3>
 	  </div>
 	  <div class='panel-body {{State}}'>
-      <b>State:</b> {{State}}<br>
-      
-      {{#if Action}}
-      <b>Action:</b> {{Action}}<br>
-      {{/if}}
-      
-      {{#if  ExchangePath}}
-      <b>Exch. Path:</b> 
-      <a href='http://localhost:8001/{{../../../mpid}}/exchange/{{ExchangePath}}' target='_blank'>{{ExchangePath}}
-      </a> 
-      <br>
-      {{/if}}
-      
-      {{#if  StopIf}}
-      <b>StopIf:</b>
-      <a href='http://localhost:8001/{{../../../mpid}}/exchange/{{StopIf}}' target='_blank'>{{StopIf}}
-      <br>
-      {{/if}}
-      
-      {{#if  RunIf}}
-      <b>StopIf:</b> 
-      <a href='http://localhost:8001/{{../../../mpid}}/exchange/{{RunIf}}' target='_blank'>{{RunIf}}
-      <br>
-      {{/if}}
-      
-      {{#if Comment}}
-      <b>Descr.:</b> {{Comment}}<br>
-      {{/if}}
-      
-      {{#if Value}}
-      <b>Value:</b> {{Value}}<br>
-      {{/if}}
-      
+	    <b>State:</b> {{State}}<br>
+	    
+	    {{#if Action}}
+	    <b>Action:</b> {{Action}}<br>
+	    {{/if}}
+	    
+	    {{#if  ExchangePath}}
+	    <b>Exchange Path:</b> 
+	    <a href='http://localhost:8001/{{../../../mpid}}/exchange/{{ExchangePath}}' target='_blank'>{{ExchangePath}}
+	    </a> 
+	    <br>
+	    {{/if}}
+	    
+	    {{#if  StopIf}}
+	    <b>StopIf:</b>
+	    <a href='http://localhost:8001/{{../../../mpid}}/exchange/{{StopIf}}' target='_blank'>{{StopIf}}
+	    </a> 
+	    <br>
+	    {{/if}}
+	    
+	    {{#if  RunIf}}
+	    <b>StopIf:</b> 
+	    <a href='http://localhost:8001/{{../../../mpid}}/exchange/{{RunIf}}' target='_blank'>{{RunIf}}
+	    </a> 
+	    <br>
+	    {{/if}}
+	    
+	    {{#if Comment}}
+	    <b>Descr.:</b> {{Comment}}<br>
+	    {{/if}}
+	    
+	    {{#if Value}}
+	    <b>Value:</b> {{Value}}<br>
+	    {{/if}}
+	    
 	  </div>
 	</div>
 	{{/each}}
