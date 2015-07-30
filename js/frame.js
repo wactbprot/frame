@@ -41,6 +41,16 @@
     });
   });
 
+  // timer
+  var $timer =  $("#timer");
+  if($timer.length > 0){
+    var path = $timer.data("path")
+    $.get( path, function( html ) {
+      $timer.replaceWith( html );
+    })
+  }
+
+
   // poll cdid
   var iid_cdid =  setInterval(function(){
                     var $cdid =  $(".cdid")
@@ -109,6 +119,7 @@
                       }
                     }
                   }, 50);
+
   // ssmp online?
   var iid_timer =  setInterval(function(){
                      var $timer =  $("#timer");
