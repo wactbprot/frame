@@ -6,6 +6,7 @@ var frame = function(){
     , coll    = require("./lib/collections")
     , jsnhtml = require("./lib/jsnhtml")
     , receive = require("./lib/receive")
+    , hc      = require("./lib/template")
     , deflt   = require("./lib/default")
     , server  = restify.createServer({name: deflt.appname})
     , log     = bunyan.createLogger({name: deflt.appname})
@@ -82,7 +83,7 @@ var frame = function(){
       }else{
         log.error(err
                  , "request failed");
-        res.write("<label>" + err.message + "</label>");
+        res.write(hc(err));
         res.end();
       }
     });
@@ -102,7 +103,7 @@ var frame = function(){
       }else{
         log.error(err
                  , "request failed");
-        res.write("<label>" + err.message + "</label>");
+        res.write(hc(err));
         res.end();
       }
     });
@@ -122,7 +123,7 @@ var frame = function(){
       }else{
         log.error(err
                  , "request failed");
-        res.write("<label>" + err.message + "</label>");
+        res.write(hc(err));
         res.end();
       }
     });
@@ -142,7 +143,7 @@ var frame = function(){
       }else{
         log.error(err
                  , "request failed");
-        res.write("<label>" + err.message + "</label>");
+        res.write(hc(err));
         res.end();
       }
     });
@@ -162,7 +163,7 @@ var frame = function(){
       }else{
         log.error(err
                  , "request failed");
-        res.write("<label>" + err.message + "</label>");
+        res.write(hc(err));
         res.end();
       }
     });
@@ -182,7 +183,7 @@ var frame = function(){
       }else{
         log.error(err
                  , "request failed");
-        res.write("<label>" + err.message + "</label>");
+        res.write(hc(err));
         res.end();
       }
     });
