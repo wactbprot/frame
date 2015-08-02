@@ -16,73 +16,73 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-	    {{#container.Title}}
-	    <li class="dropdown">
+        {{#container.Title}}
+        <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-		 aria-expanded="false">{{.}}<span class="caret">
-		</span>
-	      </a>
+         aria-expanded="false">{{.}}<span class="caret">
+        </span>
+          </a>
               <ul class="dropdown-menu" role="menu">
-		<li>
-		  <a href="/{{../mpid}}/{{@index}}/elements/frame">elements</a>
-		</li>
+        <li>
+          <a href="/{{../mpid}}/{{@index}}/elements/frame">elements</a>
+        </li>
                 <li>
                   <a href="/{{../mpid}}/{{@index}}/state/frame">state</a>
                 </li>
-	      </ul>
-	    </li>
-	    {{/container.Title}}
           </ul>
-	  <ul class="nav navbar-nav navbar-right">
+        </li>
+        {{/container.Title}}
+          </ul>
+      <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-		 role="button" aria-expanded="false">Controlls
-		<span class="caret"></span></a>
+         role="button" aria-expanded="false">Controlls
+        <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-		<li>
-		  <button class = 'exchange-button btn btn-sm btn-primary btn-block'
-			  data-cmd ='load;run'
-			  data-method = 'PUT'
-			  data-path ='/{{mpid}}/{{no}}/ctrl'>
-		    load&run
-		  </button>
-		</li>
-		<li>
-		  <button class = 'exchange-button btn btn-sm btn-default btn-block'
-			data-cmd ='load'
-			data-method = 'PUT'
-			data-path ='/{{mpid}}/{{no}}/ctrl'>
-		  load
-		</button>
-		</li>
-		<li>
-		  <button class = 'exchange-button btn btn-sm btn-default btn-block'
-			data-cmd ='mon'
-			data-method = 'PUT'
-			data-path ='/{{mpid}}/{{no}}/ctrl'>
-		  mon
-		</button>
-		</li>
-		<li>
-		  <button class = 'exchange-button btn btn-sm btn-default btn-block'
-			  data-cmd ='run'
-			data-method = 'PUT'
-			data-path ='/{{mpid}}/{{no}}/ctrl'>
-		  run
-		</button>
-		</li>
+        <li>
+          <button class = 'exchange-button btn btn-sm btn-primary btn-block'
+              data-cmd ='load;run'
+              data-method = 'PUT'
+              data-path ='/{{mpid}}/{{no}}/ctrl'>
+            load&run
+          </button>
+        </li>
+        <li>
+          <button class = 'exchange-button btn btn-sm btn-default btn-block'
+            data-cmd ='load'
+            data-method = 'PUT'
+            data-path ='/{{mpid}}/{{no}}/ctrl'>
+          load
+        </button>
+        </li>
+        <li>
+          <button class = 'exchange-button btn btn-sm btn-default btn-block'
+            data-cmd ='mon'
+            data-method = 'PUT'
+            data-path ='/{{mpid}}/{{no}}/ctrl'>
+          mon
+        </button>
+        </li>
+        <li>
+          <button class = 'exchange-button btn btn-sm btn-default btn-block'
+              data-cmd ='run'
+            data-method = 'PUT'
+            data-path ='/{{mpid}}/{{no}}/ctrl'>
+          run
+        </button>
+        </li>
 
-		<li>
-		  <button class = 'exchange-button btn btn-sm btn-danger btn-block'
-			  data-cmd ='stop'
-			  data-method = 'PUT'
-			  data-path ='/{{mpid}}/{{no}}/ctrl'>
-		    stop
-		  </button>
-		</li>
-	      </ul>
+        <li>
+          <button class = 'exchange-button btn btn-sm btn-danger btn-block'
+              data-cmd ='stop'
+              data-method = 'PUT'
+              data-path ='/{{mpid}}/{{no}}/ctrl'>
+            stop
+          </button>
+        </li>
+          </ul>
             </li>
-	  </ul>
+      </ul>
         </div>
       </div>
     </nav>
@@ -97,19 +97,19 @@
         {{description}}
       </div>
       <div class="col-md-2">
-	<h4>timer</h4>
-	<p>
-	  <label id='timer' data-path ='/{{mpid}}/timer'>connecting ...
-	  </label>
-	</p>
+    <h4>cont. run time</h4>
+    <p>
+      <label id='timer' data-path ='/{{mpid}}/{{no}}/timer'>connecting ...
+      </label>
+    </p>
       </div>
     </div>
     <div class="container">
       <a id="content_link" href="/{{mpid}}/{{no}}/{{struct}}" > /{{mpid}}/{{no}}/{{struct}}</a>
     </div>
-    
+
     <script src="/js/jquery-2.1.4.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/frame.js"></script> 
-  </body>
+    <script src="/js/frame.js"></script>
+  </Body>
 </html>
