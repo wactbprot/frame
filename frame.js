@@ -83,7 +83,7 @@ var frame = function(){
       }else{
         log.error(err
                  , "request failed");
-        res.write(hc(err));
+        res.write(hc["error"](err));
         res.end();
       }
     });
@@ -103,7 +103,7 @@ var frame = function(){
       }else{
         log.error(err
                  , "request failed");
-        res.write(hc(err));
+        res.write(hc["error"](err));
         res.end();
       }
     });
@@ -123,7 +123,7 @@ var frame = function(){
       }else{
         log.error(err
                  , "request failed");
-        res.write(hc(err));
+        res.write(hc["error"](err));
         res.end();
       }
     });
@@ -143,7 +143,7 @@ var frame = function(){
       }else{
         log.error(err
                  , "request failed");
-        res.write(hc(err));
+        res.write(hc["error"](err));
         res.end();
       }
     });
@@ -163,7 +163,7 @@ var frame = function(){
       }else{
         log.error(err
                  , "request failed");
-        res.write(hc(err));
+        res.write(hc["error"](err));
         res.end();
       }
     });
@@ -183,7 +183,7 @@ var frame = function(){
       }else{
         log.error(err
                  , "request failed");
-        res.write(hc(err));
+        res.write(hc["error"](err));
         res.end();
       }
     });
