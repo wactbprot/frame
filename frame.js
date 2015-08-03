@@ -191,7 +191,7 @@ var frame = function(){
   });
 
   // timer auch im Fehlerfall Zurücksenden
-  server.get("/:id/timer", function(req, res, next){
+  server.get("/:id/:no/timer", function(req, res, next){
     res.writeHead(200, {
       'Content-Type': 'text/html'
     });
