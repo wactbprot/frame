@@ -41,14 +41,6 @@
     });
   });
 
-  // timer
-  var $timer =  $("#timer");
-  if($timer.length > 0){
-    var path = $timer.data("path")
-    $.get( path, function( html ) {
-      $timer.replaceWith( html );
-    })
-  }
 
 
   // poll cdid
@@ -120,30 +112,5 @@
                     }
                   }, 50);
 
-  // ssmp online?
-  var iid_timer =  setInterval(function(){
-                     var $timer =  $("#timer");
-                     if($timer.length > 0){
-                      var path = $timer.data("path")
-                       $.get( path, function( html ) {
-                         $timer.replaceWith( html );
-                       })
-                       .done(function() {
-                         if($("#timer").hasClass("offline")){
-                           alert("ssmp is down \r"
-                                + " shutdown polling\r"
-                                + " frame needs restart");
-                           clearInterval(iid_poll  );
-                           clearInterval(iid_state );
-                           clearInterval(iid_cdid  );
-                           clearInterval(iid_timer );
-                           iid_poll  = null;
-                           iid_state = null;
-                           iid_cdid  = null;
-                           iid_timer = null;
-                         }
-                       });
-                     }
-                 },1000)
 
 })(jQuery);
