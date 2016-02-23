@@ -204,6 +204,14 @@ var frame = function(){
     next();
   });
 
+ server.get("/:id/:container/message", function(req, res, next){
+    coll.message(req, function(err, msg){
+        res.write(msg);
+        res.end();
+    });
+   next();
+ });
+
   server.listen(deflt.frame.port, function() {
     log.info(ok
             , "\n"

@@ -41,6 +41,21 @@
     });
   });
 
+  // poll messages
+  var iid_msg =  setInterval(function(){
+                   var $msgid = $("#message")
+                     ,  path = $msgid.data("path")
+                   $.get( path, function( msg ) {
+                     if(msg != ""){
+                       var r = confirm("Message on " + path + ": " + msg);
+                       if (r == true) {
+                         // set message to ""
+                       } else {
+
+                       }
+                     }
+                   });
+                  }, 1000)
 
 
   // poll cdid
@@ -67,7 +82,7 @@
   // poll elements
   var i = 0;
   var iid_poll =  setInterval(function(){
-                    var $poll =  $(".poll")
+                    var $poll = $(".poll")
                       , L     = $poll.length
                     if( L > 0){
                       var path = $poll.eq(i).data("path");
