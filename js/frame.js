@@ -47,7 +47,7 @@
                      ,  path = $msgid.data("path")
                    $.get( path, function( msg ) {
                      if((msg != "no") && (msg != "ok")){
-                       var r = confirm("Message on " + path + ": " + msg);
+                       var r = confirm(msg);
                        if (r == true) {
                          $.ajax({
                            method: "PUT",
