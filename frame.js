@@ -48,6 +48,16 @@ var frame = function(){
     next();
   });
 
+  server.put("/:mpid/:container/message", function(req, res, next){
+    res.writeHead(200, {
+      'Content-Type': 'text/html'
+    });
+    receive.message(req, function(){
+      res.end();
+    });
+    next();
+  });
+
   server.put("/:mpid/id/:cdid", function(req, res, next){
     res.writeHead(200, {
       'Content-Type': 'text/html'
@@ -204,13 +214,13 @@ var frame = function(){
     next();
   });
 
- server.get("/:id/:container/message", function(req, res, next){
+  server.get("/:id/:container/message", function(req, res, next){
     coll.message(req, function(err, msg){
-        res.write(msg);
-        res.end();
+      res.write(msg);
+      res.end();
     });
-   next();
- });
+    next();
+  });
 
   server.listen(deflt.frame.port, function() {
     log.info(ok

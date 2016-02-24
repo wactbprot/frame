@@ -46,17 +46,20 @@
                    var $msgid = $("#message")
                      ,  path = $msgid.data("path")
                    $.get( path, function( msg ) {
-                     if(msg != ""){
+                     if((msg != "no") && (msg != "ok")){
                        var r = confirm("Message on " + path + ": " + msg);
                        if (r == true) {
-                         // set message to ""
+                         $.ajax({
+                           method: "PUT",
+                           url: path,
+                           data: "ok"
+                         });
                        } else {
 
                        }
                      }
                    });
                   }, 1000)
-
 
   // poll cdid
   var iid_cdid =  setInterval(function(){
