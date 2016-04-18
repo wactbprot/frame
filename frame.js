@@ -3,12 +3,12 @@ var frame = function(){
     , bunyan  = require("bunyan")
     , _       = require("underscore")
     , restify = require("restify")
-    , coll    = require("./lib/collections")
+    , send    = require("./lib/send") // to browser
+    , receive = require("./lib/receive") // from browser
     , jsnhtml = require("./lib/jsnhtml")
-    , receive = require("./lib/receive")
     , hc      = require("./lib/template")
     , deflt   = require("./lib/default")
-    , pj       = require("./package.json")
+    , pj      = require("./package.json")
     , server  = restify.createServer({name: deflt.appname})
     , log     = bunyan.createLogger({name: deflt.appname})
     , ok      = {ok:true};
@@ -85,7 +85,7 @@ var frame = function(){
     res.writeHead(200, {
       'Content-Type': 'text/html'
     });
-    coll.elements(req, function(err, jsn){
+    send.elements(req, function(err, jsn){
       if(!err){
         jsnhtml.elements(req, jsn, function(html){
           res.write(html);
@@ -105,7 +105,7 @@ var frame = function(){
     res.writeHead(200, {
       'Content-Type': 'text/html'
     });
-    coll.exch(req, function(err, jsn){
+    send.exch(req, function(err, jsn){
       if(!err){
       jsnhtml.element(req, jsn, function(html){
         res.write(html);
@@ -125,7 +125,7 @@ var frame = function(){
     res.writeHead(200, {
       'Content-Type': 'text/html'
     });
-    coll.exch(req, function(err, jsn){
+    send.exch(req, function(err, jsn){
       if(!err){
         jsnhtml.elem(req, jsn, function(html){
           res.write(html);
@@ -145,7 +145,7 @@ var frame = function(){
     res.writeHead(200, {
       'Content-Type': 'text/html'
     });
-    coll.task_state(req, function(err, jsn){
+    send.task_state(req, function(err, jsn){
       if(!err){
         jsnhtml.task_state(req, jsn, function(html){
           res.write(html);
@@ -165,7 +165,7 @@ var frame = function(){
     res.writeHead(200, {
       'Content-Type': 'text/html'
     });
-    coll.meta(req, function(err, jsn){
+    send.meta(req, function(err, jsn){
       if(!err){
         jsnhtml.frame(req, jsn, function(html){
           res.write(html);
@@ -185,7 +185,7 @@ var frame = function(){
     res.writeHead(200, {
       'Content-Type': 'text/html'
     });
-    coll.cdid(req, function(err, jsn){
+    send.cdid(req, function(err, jsn){
       if(!err){
         jsnhtml.cdid(req, jsn, function(html){
           res.write(html);
@@ -206,7 +206,7 @@ var frame = function(){
     res.writeHead(200, {
       'Content-Type': 'text/html'
     });
-    coll.timer(req, function(err, jsn){
+    send.timer(req, function(err, jsn){
       jsnhtml.timer(req, jsn, function(html){
         res.write(html);
         res.end();
@@ -216,7 +216,7 @@ var frame = function(){
   });
 
   server.get("/:id/:container/message", function(req, res, next){
-    coll.message(req, function(err, msg){
+    send.message(req, function(err, msg){
       res.write(msg);
       res.end();
     });
