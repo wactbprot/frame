@@ -1,5 +1,4 @@
 (function($){
-
   // once at the begining
   var $content_link =  $("#content_link")
   $.get( $content_link.attr("href"), function( html ) {

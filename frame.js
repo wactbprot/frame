@@ -197,34 +197,12 @@ var frame = function(){
   });
 
   server.get("/:id/id", function(req, res, next){
-    res.writeHead(200, {
-      'Content-Type': 'text/html'
-    });
     send.cdid(req, function(err, jsn){
-      if(!err && jsn){
-        jsnhtml.cdid(req, jsn, function(html){
-          res.write(html);
-          res.end();
-        });
-      }else{
-        log.error(err
-                 , "request failed");
-        res.write(hc["error"](err));
-        res.end();
-      }
-    });
-    next();
-  });
-
-  // timer auch im Fehlerfall Zurücksenden
-  server.get("/:id/timer", function(req, res, next){
-    send.timer(req, function(err, jsn){
       if(!err && jsn){
         res.writeHead(200, {
           'Content-Type': 'text/html'
         });
-
-        jsnhtml.timer(req, jsn, function(html){
+        jsnhtml.cdid(req, jsn, function(html){
           res.write(html);
           res.end();
         });
@@ -259,6 +237,5 @@ var frame = function(){
             );
 
   });
-
 }
 module.exports = frame;
