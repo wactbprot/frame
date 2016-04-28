@@ -8,11 +8,12 @@ var frame = function(){
     , receive = require("./lib/receive")
     , hc      = require("./lib/template")
     , deflt   = require("./lib/default")
+    , pj       = require("./package.json")
     , server  = restify.createServer({name: deflt.appname})
     , log     = bunyan.createLogger({name: deflt.appname})
     , ok      = {ok:true};
 
-  prog.version("0.1.0")
+  prog.version(pj.version)
   .parse(process.argv);
 
   server.pre(restify.pre.sanitizePath());
