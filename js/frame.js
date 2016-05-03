@@ -42,22 +42,19 @@
 
   // poll messages
   var iid_msg =  setInterval(function(){
-                   var $msgid = $("#message")
+                   var $msgid  = $("#message")
+                     , $msgbtn =  $("#msgbtn")
+                     , $msgcnt = $("#msgcnt")
                      ,  path = $msgid.data("path")
-                   $.get( path, function( msg ) {
-                     if((msg != "no") && (msg != "ok")){
-                       var r = confirm(msg);
-                       if (r == true) {
-                         $.ajax({
-                           method: "PUT",
-                           url: path,
-                           data: "ok"
-                         });
-                       } else {
-
-                       }
-                     }
-                   });
+                    $.get(path, function( msg ) {
+                      if((msg != "no") && (msg != "ok")){
+                        $msgcnt.replaceWith("<p id='msgcnt'>" + msg + "</p>")
+                        $msgbtn.fadeIn()
+                      } else {
+                        $msgcnt.replaceWith("<p id='msgcnt'>none</p>")
+                        $msgbtn.fadeOut()
+                      }
+                    });
                   }, 1000)
 
   // poll cdid
@@ -79,7 +76,7 @@
                         $state.replaceWith( html );
                       })
                     }
-                  }, 500)
+                  }, 300)
 
   // poll elements
   var i = 0;
