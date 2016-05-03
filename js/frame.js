@@ -108,6 +108,9 @@
                                            var $html_child = $html.children(".usrinput,.poll")
                                              , value       = $html_child.val()
                                              , path        = $html_child.data("path");
+                                           if($html_child.hasClass("number")){
+                                             value = value.replace(/,/g, ".")
+                                           }
                                            $.ajax({
                                              method: "PUT",
                                              url: path,
