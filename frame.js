@@ -3,12 +3,12 @@ var frame = function(){
     , bunyan  = require("bunyan")
     , _       = require("underscore")
     , restify = require("restify")
-    , coll    = require("./lib/collections")
+    , send    = require("./lib/send") // to browser
+    , receive = require("./lib/receive") // from browser
     , jsnhtml = require("./lib/jsnhtml")
-    , receive = require("./lib/receive")
     , hc      = require("./lib/template")
     , deflt   = require("./lib/default")
-    , pj       = require("./package.json")
+    , pj      = require("./package.json")
     , server  = restify.createServer({name: deflt.appname})
     , log     = bunyan.createLogger({name: deflt.appname})
     , ok      = {ok:true};
@@ -82,16 +82,19 @@ var frame = function(){
 
   // ---------- get requests
   server.get("/:id/:container/elements", function(req, res, next){
-    res.writeHead(200, {
-      'Content-Type': 'text/html'
-    });
-    coll.elements(req, function(err, jsn){
-      if(!err){
+    send.elements(req, function(err, jsn){
+      if(!err && jsn){
+        res.writeHead(200, {
+          'Content-Type': 'text/html'
+        });
         jsnhtml.elements(req, jsn, function(html){
           res.write(html);
           res.end();
         });
       }else{
+        res.writeHead(503, {
+          'Content-Type': 'text/html'
+        });
         log.error(err
                  , "request failed");
         res.write(hc["error"](err));
@@ -102,16 +105,19 @@ var frame = function(){
   });
 
   server.get("/:id/exchange/:exchkey", function(req, res, next){
-    res.writeHead(200, {
-      'Content-Type': 'text/html'
-    });
-    coll.exch(req, function(err, jsn){
-      if(!err){
-      jsnhtml.element(req, jsn, function(html){
-        res.write(html);
-        res.end();
-      });
+    send.exch(req, function(err, jsn){
+      if(!err && jsn){
+        res.writeHead(200, {
+          'Content-Type': 'text/html'
+        });
+        jsnhtml.element(req, jsn, function(html){
+          res.write(html);
+          res.end();
+        });
       }else{
+        res.writeHead(503, {
+          'Content-Type': 'text/html'
+        });
         log.error(err
                  , "request failed");
         res.write(hc["error"](err));
@@ -122,16 +128,19 @@ var frame = function(){
   });
 
   server.get("/:id/exchange/:exchkey/:subkey", function(req, res, next){
-    res.writeHead(200, {
-      'Content-Type': 'text/html'
-    });
-    coll.exch(req, function(err, jsn){
-      if(!err){
+    send.exch(req, function(err, jsn){
+      if(!err && jsn){
+        res.writeHead(200, {
+          'Content-Type': 'text/html'
+        });
         jsnhtml.elem(req, jsn, function(html){
           res.write(html);
           res.end();
         });
       }else{
+        res.writeHead(503, {
+          'Content-Type': 'text/html'
+        });
         log.error(err
                  , "request failed");
         res.write(hc["error"](err));
@@ -142,16 +151,19 @@ var frame = function(){
   });
 
   server.get("/:id/:container/state", function(req, res, next){
-    res.writeHead(200, {
-      'Content-Type': 'text/html'
-    });
-    coll.task_state(req, function(err, jsn){
-      if(!err){
+    send.task_state(req, function(err, jsn){
+      if(!err && jsn){
+        res.writeHead(200, {
+          'Content-Type': 'text/html'
+        });
         jsnhtml.task_state(req, jsn, function(html){
           res.write(html);
           res.end();
         });
       }else{
+        res.writeHead(503, {
+          'Content-Type': 'text/html'
+        });
         log.error(err
                  , "request failed");
         res.write(hc["error"](err));
@@ -162,16 +174,19 @@ var frame = function(){
   });
 
   server.get("/:id/:container/:struct/frame", function(req, res, next){
-    res.writeHead(200, {
-      'Content-Type': 'text/html'
-    });
-    coll.meta(req, function(err, jsn){
-      if(!err){
+    send.meta(req, function(err, jsn){
+      if(!err && jsn){
+        res.writeHead(200, {
+          'Content-Type': 'text/html'
+        });
         jsnhtml.frame(req, jsn, function(html){
           res.write(html);
           res.end();
         });
       }else{
+        res.writeHead(503, {
+          'Content-Type': 'text/html'
+        });
         log.error(err
                  , "request failed");
         res.write(hc["error"](err));
@@ -182,16 +197,19 @@ var frame = function(){
   });
 
   server.get("/:id/id", function(req, res, next){
-    res.writeHead(200, {
-      'Content-Type': 'text/html'
-    });
-    coll.cdid(req, function(err, jsn){
-      if(!err){
+    send.cdid(req, function(err, jsn){
+      if(!err && jsn){
+        res.writeHead(200, {
+          'Content-Type': 'text/html'
+        });
         jsnhtml.cdid(req, jsn, function(html){
           res.write(html);
           res.end();
         });
       }else{
+        res.writeHead(503, {
+          'Content-Type': 'text/html'
+        });
         log.error(err
                  , "request failed");
         res.write(hc["error"](err));
@@ -201,22 +219,8 @@ var frame = function(){
     next();
   });
 
-  // timer auch im Fehlerfall Zurücksenden
-  server.get("/:id/timer", function(req, res, next){
-    res.writeHead(200, {
-      'Content-Type': 'text/html'
-    });
-    coll.timer(req, function(err, jsn){
-      jsnhtml.timer(req, jsn, function(html){
-        res.write(html);
-        res.end();
-      });
-    });
-    next();
-  });
-
   server.get("/:id/:container/message", function(req, res, next){
-    coll.message(req, function(err, msg){
+    send.message(req, function(err, msg){
       res.write(msg);
       res.end();
     });
@@ -233,6 +237,5 @@ var frame = function(){
             );
 
   });
-
 }
 module.exports = frame;

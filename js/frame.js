@@ -1,5 +1,4 @@
 (function($){
-
   // once at the begining
   var $content_link =  $("#content_link")
   $.get( $content_link.attr("href"), function( html ) {
@@ -43,22 +42,19 @@
 
   // poll messages
   var iid_msg =  setInterval(function(){
-                   var $msgid = $("#message")
+                   var $msgid  = $("#message")
+                     , $msgbtn =  $("#msgbtn")
+                     , $msgcnt = $("#msgcnt")
                      ,  path = $msgid.data("path")
-                   $.get( path, function( msg ) {
-                     if((msg != "no") && (msg != "ok")){
-                       var r = confirm(msg);
-                       if (r == true) {
-                         $.ajax({
-                           method: "PUT",
-                           url: path,
-                           data: "ok"
-                         });
-                       } else {
-
-                       }
-                     }
-                   });
+                    $.get(path, function( msg ) {
+                      if((msg != "no") && (msg != "ok")){
+                        $msgcnt.replaceWith("<p id='msgcnt'>" + msg + "</p>")
+                        $msgbtn.fadeIn()
+                      } else {
+                        $msgcnt.replaceWith("<p id='msgcnt'>none</p>")
+                        $msgbtn.fadeOut()
+                      }
+                    });
                   }, 1000)
 
   // poll cdid
@@ -80,7 +76,7 @@
                         $state.replaceWith( html );
                       })
                     }
-                  }, 500)
+                  }, 300)
 
   // poll elements
   var i = 0;
@@ -112,6 +108,9 @@
                                            var $html_child = $html.children(".usrinput,.poll")
                                              , value       = $html_child.val()
                                              , path        = $html_child.data("path");
+                                           if($html_child.hasClass("number")){
+                                             value = value.replace(/,/g, ".")
+                                           }
                                            $.ajax({
                                              method: "PUT",
                                              url: path,

@@ -111,14 +111,25 @@
 	</p>
 	<p>
 	  <a target="_blank"
-	     href="http://localhost:8003" >ssmp info system</a>
+	     href="http://localhost:5984/vl_db/_design/dbmp/_list/overview/mpdocs" >measurement definitions</a>
 	</p>
+      </div>
+      <div class="col-md-1">
+       	<button id="msgbtn" class = 'exchange-button btn btn-sm btn-primary btn-block'
+		data-cmd ='ok'
+		data-method = 'PUT'
+		data-path = '/{{mpid}}/{{no}}/message'>
+           done
+        </button>
+      </div>
+      <div class="col-md-11">
+	<h4>messages</h4>
+	<div id='message' data-path ='/{{mpid}}/{{no}}/message'><p id='msgcnt'>...lookup</p></div>
       </div>
     </div>
     <div class="container">
       <a id="content_link" href="/{{mpid}}/{{no}}/{{struct}}" > /{{mpid}}/{{no}}/{{struct}}</a>
     </div>
-    <div id='message'  data-path ='/{{mpid}}/{{no}}/message'></div>
     <script src="/js/jquery-2.1.4.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/frame.js"></script>
