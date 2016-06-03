@@ -76,7 +76,7 @@
                         $state.replaceWith( html );
                       })
                     }
-                  }, 300)
+                  }, 400)
 
   // poll elements
   var i = 0;
@@ -127,7 +127,7 @@
                         i = 0;
                       }
                     }
-                  }, 50);
+                  }, 200);
 
 
 })(jQuery);
