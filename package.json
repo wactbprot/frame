@@ -16,7 +16,7 @@
 	"handlebars":">=1.3.0"
     },
     "scripts": {
-        "frame": "bin/frame | bunyan -l info"
+        "start": "bin/start | bunyan -l info"
     },
     "devDependencies": {
         "mocha":">=2.2.5",

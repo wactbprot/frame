@@ -6,9 +6,31 @@
 |  .-'|  |   \ '-'  ||  |  |  |\   --. 
 `--'  `--'    `--`--'`--`--`--' `----' 
 ```
-ist ein möglicher client für [ssmp](/../../../../vaclab/ssmp). Er beruht auf einem polling Mechanismus und verwendet [bootsrtap](http://getbootstrap.com)
 
-## Überblick
+___frame___ 
+* ist ein client für [ssmp](/../../../../vaclab/ssmp)
+* beruht auf einem polling Mechanismus 
+* verwendet [bootsrtap](http://getbootstrap.com)
+
+## Installation
+
+```
+~/> git clone git@a75436.berlin.ptb.de:thomas.bock/frame.git
+~/> cd frame
+~/frame> npm install frame
+```
+
+## Starten
+
+frame ist ein frame um ssmp; d.h. starten von frame macht nur bei laufendem
+ssmp Sinn:
+
+```
+~/frame> npm start
+```
+
+
+## Schema des Gesamtsystem
 
 ```
 
