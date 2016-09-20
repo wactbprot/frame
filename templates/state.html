@@ -20,21 +20,21 @@
 	    
 	    {{#if  ExchangePath}}
 	    <b>Exchange Path:</b> 
-	    <a href='http://localhost:8001/{{../../../mpid}}/exchange/{{ExchangePath}}' target='_blank'>{{ExchangePath}}
+	    <a href='http://localhost:8001/{{../../mpid}}/exchange/{{{toExchPath ExchangePath}}}' target='_blank'>{{ExchangePath}}
 	    </a> 
 	    <br>
 	    {{/if}}
 	    
 	    {{#if  StopIf}}
 	    <b>StopIf:</b>
-	    <a href='http://localhost:8001/{{../../../mpid}}/exchange/{{StopIf}}' target='_blank'>{{StopIf}}
+	    <a href='http://localhost:8001/{{../../mpid}}/exchange/{{toExchPath StopIf}}' target='_blank'>{{StopIf}}
 	    </a> 
 	    <br>
 	    {{/if}}
 	    
 	    {{#if  RunIf}}
 	    <b>RunIf:</b> 
-	    <a href='http://localhost:8001/{{../../../mpid}}/exchange/{{RunIf}}' target='_blank'>{{RunIf}}
+	    <a href='http://localhost:8001/{{../../mpid}}/exchange/{{toExchPath RunIf}}' target='_blank'>{{RunIf}}
 	    </a> 
 	    <br>
 	    {{/if}}
