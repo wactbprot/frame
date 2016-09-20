@@ -3,65 +3,87 @@
   <div class='col-sm-4'>
     <div class='serial panel panel-default'>
       <div  class='panel-heading'>
-	<h3 class='panel-title'>Step: {{@index}}</h3>
+        <h3 class='panel-title'>Step: {{@index}}</h3>
       </div>
       <div class='panel-body'>
-	{{#each step}}
-	<div class='parallel  panel panel-default' >
-	  <div  class='panel-heading {{State}}'>
+        {{#each step}}
+        <div class='parallel  panel panel-default' >
+          <div  class='panel-heading {{State}}'>
             <h3 class='panel-title'>{{TaskName}}</h3>
-	  </div>
-	  <div class='panel-body {{State}}'>
-	    <b>State:</b> {{State}}<br>
+          </div>
+          <div class='panel-body {{State}}'>
+            <h4>State</h4>
+	    <p>
+	      {{State}}
+	    </p>
+
+            {{#if Action}}
+            <h4>Action</h4>
+	    <p>
+	      {{Action}}
+	    </p>
+            {{/if}}
+
+            {{#if  ExchangePath}}
+            <h4>Exchange Path</h4>
+            <p>
+	      <a href='http://localhost:8001/{{../../mpid}}/exchange/{{{toExchPath ExchangePath}}}' target='_blank'>{{ExchangePath}}
+              </a>
+           </p>
+            {{/if}}
+
+            {{#if  StopIf}}
+            <h4>StopIf</h4>
+            <p>
+	      <a href='http://localhost:8001/{{../../mpid}}/exchange/{{toExchPath StopIf}}' target='_blank'>{{StopIf}}
+              </a>
+            </p>
+            {{/if}}
+
+            {{#if  RunIf}}
+            <h4>RunIf</h4>
+            <p>
+	      <a href='http://localhost:8001/{{../../mpid}}/exchange/{{toExchPath RunIf}}' target='_blank'>{{RunIf}}
+              </a>
+            </p>
+            {{/if}}
 	    
-	    {{#if Action}}
-	    <b>Action:</b> {{Action}}<br>
-	    {{/if}}
+            {{#if DefinitionClass}}
+            <h4>Definition Class</h4>
+	    <p>
+	      {{DefinitionClass}}
+	    </p>
+            {{/if}}
+
+            {{#if Repeat}}
+            <h4>Repeat</h4>
+	    <p>
+	      {{Repeat}}
+	    </p>
+            {{/if}}
+
+            {{#if Wait}}
+	    <h4>Wait</h4>
+	    <p>
+	      {{Wait}} (ms)
+	    </p>
+            {{/if}}
+            {{#if Comment}}
+            <h4>Describtion</h4>
+	    <p>
+	      {{Comment}}
+	    </p>
+            {{/if}}
 	    
-	    {{#if  ExchangePath}}
-	    <b>Exchange Path:</b> 
-	    <a href='http://localhost:8001/{{../../mpid}}/exchange/{{{toExchPath ExchangePath}}}' target='_blank'>{{ExchangePath}}
-	    </a> 
-	    <br>
-	    {{/if}}
-	    
-	    {{#if  StopIf}}
-	    <b>StopIf:</b>
-	    <a href='http://localhost:8001/{{../../mpid}}/exchange/{{toExchPath StopIf}}' target='_blank'>{{StopIf}}
-	    </a> 
-	    <br>
-	    {{/if}}
-	    
-	    {{#if  RunIf}}
-	    <b>RunIf:</b> 
-	    <a href='http://localhost:8001/{{../../mpid}}/exchange/{{toExchPath RunIf}}' target='_blank'>{{RunIf}}
-	    </a> 
-	    <br>
-	    {{/if}}
-	    
-	    {{#if DefinitionClass}}
-	    <b>Definition Class:</b> {{DefinitionClass}}<br>
-	    {{/if}}
- 
-	    {{#if Repeat}}
-	    <b>Repeat:</b> {{Repeat}}<br>
-	    {{/if}}
-	    
-	    {{#if Wait}}
-	    <b>Wait:</b> {{Wait}} (ms)<br>
-	    {{/if}}
-	   
-	    {{#if Comment}}
-	    <b>Descr.:</b> {{Comment}}<br>
-	    {{/if}}
-	    
-	    {{#if Value}}
-	    <b>Value:</b> {{Value}}<br>
-	    {{/if}}
-	    
-	  </div>
-	</div>
-	{{/each}}
+            {{#if Value}}
+            <h4>Value</h4>
+	    <p>
+	      {{niceValue Value}}
+	    </p>
+            {{/if}}
+          </div>
+        </div>
+        {{/each}}
       </div>
     </div>
   </div>
