@@ -1,8 +1,8 @@
 {
     "author": "wactbprot",
     "name": "frame",
-    "description": "ssmp json to html, html to json",
-    "version": "0.2.0",
+    "description": "web frontend  for ssmp",
+    "version": "0.3.0",
     "repository": {
         "type":"git",
         "url": "https://github.com/wactbprot/frame"

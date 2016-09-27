@@ -21,6 +21,12 @@
       , path   = $this.data("path")
       , method = $this.data("method")
       , cmd    = $this.data("cmd");
+    //
+    $this.attr('disabled','disabled');
+    setInterval(function(){
+      $this.removeAttr('disabled');
+    }, 20000);
+
     $.ajax({
       method: method,
       url: path,
