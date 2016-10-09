@@ -11,31 +11,34 @@
           <div  class='panel-heading {{State}}'>
             <h3 class='panel-title'>{{TaskName}}</h3>
           </div>
-          <div class='panel-body {{State}}'>
+          <div class='panel-body state {{State}}'
+               data-cmd-ready ='ready'
+	             data-method = 'PUT'
+               data-path ='/{{mpid}}/{{no}}/state/...'
+	             >
             <h4>State</h4>
-	    <p>
-	      {{State}}
-	    </p>
-
+            <p>
+              {{State}}
+            </p>
             {{#if Action}}
             <h4>Action</h4>
-	    <p>
-	      {{Action}}
-	    </p>
+            <p>
+              {{Action}}
+            </p>
             {{/if}}
 
             {{#if  ExchangePath}}
             <h4>Exchange Path</h4>
             <p>
-	      <a href='http://localhost:8001/{{../../mpid}}/exchange/{{{toExchPath ExchangePath}}}' target='_blank'>{{ExchangePath}}
+              <a href='http://localhost:8001/{{../../mpid}}/exchange/{{{toExchPath ExchangePath}}}' target='_blank'>{{ExchangePath}}
               </a>
-           </p>
+            </p>
             {{/if}}
 
             {{#if  StopIf}}
             <h4>StopIf</h4>
             <p>
-	      <a href='http://localhost:8001/{{../../mpid}}/exchange/{{toExchPath StopIf}}' target='_blank'>{{StopIf}}
+              <a href='http://localhost:8001/{{../../mpid}}/exchange/{{toExchPath StopIf}}' target='_blank'>{{StopIf}}
               </a>
             </p>
             {{/if}}
@@ -43,43 +46,43 @@
             {{#if  RunIf}}
             <h4>RunIf</h4>
             <p>
-	      <a href='http://localhost:8001/{{../../mpid}}/exchange/{{toExchPath RunIf}}' target='_blank'>{{RunIf}}
+              <a href='http://localhost:8001/{{../../mpid}}/exchange/{{toExchPath RunIf}}' target='_blank'>{{RunIf}}
               </a>
             </p>
             {{/if}}
-	    
+
             {{#if DefinitionClass}}
             <h4>Definition Class</h4>
-	    <p>
-	      {{DefinitionClass}}
-	    </p>
+            <p>
+              {{DefinitionClass}}
+            </p>
             {{/if}}
 
             {{#if Repeat}}
             <h4>Repeat</h4>
-	    <p>
-	      {{Repeat}}
-	    </p>
+            <p>
+              {{Repeat}}
+            </p>
             {{/if}}
 
             {{#if Wait}}
-	    <h4>Wait</h4>
-	    <p>
-	      {{Wait}} (ms)
-	    </p>
+            <h4>Wait</h4>
+            <p>
+              {{Wait}} (ms)
+            </p>
             {{/if}}
             {{#if Comment}}
             <h4>Description</h4>
-	    <p>
-	      {{Comment}}
-	    </p>
+            <p>
+              {{Comment}}
+            </p>
             {{/if}}
-	    
+
             {{#if Value}}
             <h4>Value</h4>
-	    <p>
-	      {{niceValue Value}}
-	    </p>
+            <p>
+              {{niceValue Value}}
+            </p>
             {{/if}}
           </div>
         </div>
