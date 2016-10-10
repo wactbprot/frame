@@ -9,17 +9,31 @@
         {{#each step}}
         <div class='parallel  panel panel-default' >
           <div  class='panel-heading {{State}}'>
-            <h3 class='panel-title'>{{TaskName}}</h3>
-          </div>
-          <div class='panel-body state {{State}}'
-               data-cmd-ready ='ready'
-	             data-method = 'PUT'
-               data-path ='/{{mpid}}/{{no}}/state/...'
-	             >
-            <h4>State</h4>
-            <p>
-              {{State}}
-            </p>
+            <button class = 'exchange-button btn btn-xs'
+                    data-cmd ='ready'
+                    data-method = 'PUT'
+                    data-path ='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}'
+                    type='submit'><span title="set task state ready"
+ 					class="glyphicon glyphicon-refresh"
+					aria-hidden="true"></span></button>
+            <button class = 'exchange-button btn btn-xs'
+                    data-cmd ='executed'
+                    data-method = 'PUT'
+                    data-path ='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}'
+                    type='submit'><span title="set task state executed"
+					class="glyphicon glyphicon-ok"
+					aria-hidden="true"></span></button>
+	    <button class = 'exchange-button btn btn-xs'
+                    data-cmd ='working'
+                    data-method = 'PUT'
+                    data-path ='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}'
+                    type='submit'><span title="set task state working"
+					class="glyphicon glyphicon-cog"
+					aria-hidden="true"></span></button>
+	    
+	  </div>
+          <div class='panel-body {{State}}'>
+            <h3>{{TaskName}}</h3>
             {{#if Action}}
             <h4>Action</h4>
             <p>

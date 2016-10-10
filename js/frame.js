@@ -34,13 +34,6 @@
     });
   });
 
-  // change state
-  $(document).on('dblclick', '.state', function(){
-    var $this   = $(this);
-alert("modify state (e.g. on error)")
-  });
-
-
   // exchange select
   $(document).on('click', '.exchange-select', function(){
     var $this   = $(this)

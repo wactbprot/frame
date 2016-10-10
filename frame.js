@@ -103,6 +103,15 @@ var frame = function(){
     });
     next();
   });
+ server.put("/:mpid/:no/state/:seq/:par", function(req, res, next){
+    res.writeHead(200, htmlcontent);
+    receive.state(req, function(err){
+      if(!err){
+        res.end();
+      }
+    });
+    next();
+  });
 
 
   // ---------- get requests
