@@ -8,11 +8,14 @@
 ```
 
 ___frame___ 
-* ist ein client für [ssmp](/../../../../vaclab/ssmp)
-* beruht auf einem polling Mechanismus 
-* verwendet [bootsrtap](http://getbootstrap.com)
 
-## Installation
+* ... is a client for [ssmp](/../../../../vaclab/ssmp)
+* ... uses polling for (demonstration reasons) 
+* ... works with [bootsrtap](http://getbootstrap.com)
+
+
+
+## installation
 
 ```
 ~/> git clone git@a75436.berlin.ptb.de:thomas.bock/frame.git
@@ -20,17 +23,24 @@ ___frame___
 ~/frame> npm install frame
 ```
 
-## Starten
-
-frame ist ein frame um ssmp; d.h. starten von frame macht nur bei laufendem
-ssmp Sinn:
+## start
 
 ```
 ~/frame> npm start
 ```
 
+## url
 
-## Schema des Gesamtsystem
+
+```
+http://server:port/<mpid>/<container>/[<state>|<elements>]/frame
+```
+
+Bsp.:
+http://localhost:8002/mpd-test-wait/0/elements/frame
+
+
+## scheme of the entire system
 
 ```
 
