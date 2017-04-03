@@ -15,7 +15,7 @@ PermissionsStartOnly=true
 # Remove PIDFile at Stop
 PIDFile=/var/run/frame/frame.pid
 ExecStartPre=/usr/bin/mkdir -p /var/run/frame
-ExecStartPost=/bin/sh -c '/usr/bin/echo $MAINPID > /var/run/ssmp/ssmp.pid'
+ExecStartPost=/bin/sh -c '/usr/bin/echo $MAINPID > /var/run/frame/frame.pid'
 WorkingDirectory=/usr/local/share/frame
 ExecStart=/usr/local/share/frame/bin/start
 
