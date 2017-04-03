@@ -23,12 +23,31 @@ ___frame___
 ## Starten
 
 frame ist ein frame um ssmp; d.h. starten von frame macht nur bei laufendem
-ssmp Sinn:
+ssmp Sinn.
+
+### systemctrl
+
+Auf den  Messrechnern wird der service automatisch beim Booten über systemctrl
+gestartet. ```stop```, ```start``` oder ```restart``` geht dann wie üblich über:
+
+```
+$> systemctl stop 
+$> systemctl start
+$> systemctl restart
+
+```
+
+Die aktuellen Logausgaben erhält man mittels:
+
+```
+$> journalctl -u ssmp -f
+```
+
+### manuell
 
 ```
 ~/frame> npm start
 ```
-
 
 ## Schema des Gesamtsystem
 
