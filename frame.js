@@ -1,4 +1,4 @@
-var frame = function(){
+module.exports = function(cb){
   var prog    = require("commander")
     , bunyan  = require("bunyan")
     , _       = require("underscore")
@@ -8,37 +8,16 @@ var frame = function(){
     , jsnhtml = require("./lib/jsnhtml")
     , hc      = require("./lib/template")
     , deflt   = require("./lib/default")
-    , ds      = require("./lib/ds")
     , pj      = require("./package.json")
+    , broker  = require("sc-broker")
     , server  = restify.createServer({name: deflt.appname})
     , log     = bunyan.createLogger({name: deflt.appname})
+    , mem     = broker.createClient({port: deflt.mem.port})
     , ok      = {ok:true}
     , htmlcontent   = {'Content-Type': 'text/html'}
     , asciicontent  = {'Content-Type': 'text/ascii'}
-    , broker  = require("sc-broker")
 
-    , mem;
-
-  var id = setInterval(function(){
-             log.info(ok
-                     , "try to comnnect to data server");
-             ds.available(deflt.mem.port, deflt.mem.host, function(available){
-               if(available){
-                 mem = broker.createClient({port: deflt.mem.port})
-                 log.info(ok
-                         , "connect to data server");
-                 clearInterval(id);
-               }else{
-                 log.warn({warn:"data server not available"}
-                         , "connect to data server");
-               }
-             })
-           }, 1000);
-
-
-
-  prog.version(pj.version)
-  .parse(process.argv);
+  prog.version(pj.version).parse(process.argv);
 
   server.pre(restify.pre.sanitizePath());
   server.use(restify.queryParser());
@@ -319,15 +298,16 @@ var frame = function(){
     next();
   });
 
-  server.listen(deflt.frame.port, function() {
+  server.listen(deflt.port, function() {
     log.info(ok
             , "\n"
             + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
             + "frame view server up and running @"
-            + deflt.frame.port +"\n"
+            + deflt.port +"\n"
             + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
             );
-
+    if(_.isFunction(cb)){
+      cb();
+    }
   });
 }
-module.exports = frame;
