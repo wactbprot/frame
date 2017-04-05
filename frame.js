@@ -300,11 +300,7 @@ module.exports = function(cb){
 
   server.listen(deflt.port, function() {
     log.info(ok
-            , "\n"
-            + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
-            + "frame view server up and running @"
-            + deflt.port +"\n"
-            + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+            , " ----> frame view server up and running @" + deflt.port
             );
     if(_.isFunction(cb)){
       cb();
