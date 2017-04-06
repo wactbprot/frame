@@ -25,7 +25,7 @@
     $this.attr('disabled','disabled');
     setInterval(function(){
       $this.removeAttr('disabled');
-    }, 20000);
+    }, 5000);
 
     $.ajax({
       method: method,
@@ -47,93 +47,90 @@
   });
 
   // poll messages
-  var iid_msg =  setInterval(function(){
-                   var $msgid  = $("#message")
-                     , $msgbtn =  $("#msgbtn")
-                     , $msgcnt = $("#msgcnt")
-                     ,  path = $msgid.data("path")
-                    $.get(path, function( msg ) {
-                      if((msg != "no") && (msg != "ok")){
-                        $msgcnt.replaceWith("<p id='msgcnt'>" + msg + "</p>")
-                        $msgbtn.fadeIn()
-                      } else {
-                        $msgcnt.replaceWith("<p id='msgcnt'>none</p>")
-                        $msgbtn.fadeOut()
-                      }
-                    });
-                  }, 1000)
+  setInterval(function(){
+    var $msgid  = $("#message")
+      , $msgbtn = $("#msgbtn")
+      , $msgcnt = $("#msgcnt")
+      , path    = $msgid.data("path")
+    $.get(path, function( msg ) {
+      if((msg != "no") && (msg != "ok")){
+        $msgcnt.replaceWith("<p id='msgcnt'>" + msg + "</p>")
+        $msgbtn.fadeIn()
+      } else {
+        $msgcnt.replaceWith("<p id='msgcnt'>none</p>")
+        $msgbtn.fadeOut()
+      }
+    });
+  }, 1000)
 
   // poll cdid
-  var iid_cdid =  setInterval(function(){
-                    var $cdid =  $(".cdid")
-                      ,  path = $cdid.data("path")
-                    $.get( path, function( html ) {
-                      $cdid.replaceWith( html );
-                    })
-
-                  }, 500)
+  setInterval(function(){
+    var $cdid =  $(".cdid")
+      ,  path = $cdid.data("path")
+    $.get( path, function( html ) {
+      $cdid.replaceWith( html );
+    })
+  }, 5000)
 
   // poll state
-  var iid_state = setInterval(function(){
-                    var $state =  $(".state");
-                    if($state.length > 0){
-                      var path = $state.data("path")
-                      $.get( path, function( html ) {
-                        $state.replaceWith( html );
-                      })
-                    }
-                  }, 400)
+  setInterval(function(){
+    var $state =  $(".state");
+    if($state.length > 0){
+      var path = $state.data("path")
+      $.get( path, function( html ) {
+        $state.replaceWith( html );
+      })
+    }
+  }, 500)
 
   // poll elements
   var i = 0;
-  var iid_poll =  setInterval(function(){
-                    var $poll = $(".poll")
-                      , L     = $poll.length
-                    if( L > 0){
-                      var path = $poll.eq(i).data("path");
-                      $.get( path, function(j){
-                                     return  function( html ) {
+  setInterval(function(){
+    var $poll = $(".poll")
+      , L     = $poll.length
+    if( L > 0){
+      var path = $poll.eq(i).data("path");
+      $.get( path, function(j){
+                     return  function( html ) {
 
-                                       var $html = $(html)
+                       var $html = $(html)
 
-                                       if($html.children().hasClass("poll")){
-                                         // poll off on focus in
-                                         $html.children(".poll").focusin( function(e){
-                                           $html.children(".poll")
-                                           .removeClass("poll")
-                                           .addClass("usrinput")
-                                         });
-                                         // poll on on focus out
-                                         $html.children(".poll").focusout( function(e){
-                                           $html.children(".usrinput")
-                                           .removeClass("usrinput")
-                                           .addClass("poll")
-                                         });
-                                         // send value back on changes
-                                         $html.children(".poll").change( function(e){
-                                           var $html_child = $html.children(".usrinput,.poll")
-                                             , value       = $html_child.val()
-                                             , path        = $html_child.data("path");
-                                           if($html_child.hasClass("number")){
-                                             value = value.replace(/,/g, ".")
-                                           }
-                                           $.ajax({
-                                             method: "PUT",
-                                             url: path,
-                                             data: value
-                                           });
-                                         });
-                                       }
-                                       $poll.eq(j).parent().replaceWith( $html );
-                                     }
-                                   }(i));
-                      if(i < L){
-                        i++;
-                      }else{
-                        i = 0;
-                      }
-                    }
-                  }, 200);
-
-
+                       if($html.children().hasClass("poll")){
+                         // poll off on focus in
+                         $html.children(".poll").focusin( function(e){
+                           $html.children(".poll")
+                           .removeClass("poll")
+                           .addClass("usrinput")
+                         });
+                         // poll on on focus out
+                         $html.children(".poll").focusout( function(e){
+                           $html.children(".usrinput")
+                           .removeClass("usrinput")
+                           .addClass("poll")
+                         });
+                         // send value back on changes
+                         $html.children(".poll").change( function(e){
+                           var $html_child = $html.children(".usrinput,.poll")
+                             , value       = $html_child.val()
+                             , path        = $html_child.data("path");
+                           if($html_child.hasClass("number")){
+                             value = value.replace(/,/g, ".")
+                           }
+                           $.ajax({
+                             method: "PUT",
+                             url: path,
+                             data: value
+                           });
+                         });
+                       }
+                       $poll.eq(j).parent().replaceWith( $html );
+                     }
+                   }(i));
+      if(i < L){
+        i++;
+      }else{
+        i = 0;
+      }
+    }
+  }, 400);
 })(jQuery);
