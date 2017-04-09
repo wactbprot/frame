@@ -1,18 +1,18 @@
 module.exports = function(cb){
-  var prog    = require("commander")
+  var _       = require("underscore")
+    , prog    = require("commander")
     , bunyan  = require("bunyan")
-    , _       = require("underscore")
     , restify = require("restify")
     , send    = require("./lib/send") // to browser
     , receive = require("./lib/receive") // from browser
     , jsnhtml = require("./lib/jsnhtml")
     , hc      = require("./lib/template")
-    , deflt   = require("./lib/default")
+    , conf     = require("../../lib/conf")
     , pj      = require("./package.json")
     , broker  = require("sc-broker")
-    , server  = restify.createServer({name: deflt.appname})
-    , log     = bunyan.createLogger({name: deflt.appname})
-    , mem     = broker.createClient({port: deflt.mem.port})
+    , server  = restify.createServer({name: conf.frame.appname})
+    , log     = bunyan.createLogger({name: conf.frame.appname})
+    , mem     = broker.createClient({port: conf.mem.port})
     , ok      = {ok:true}
     , htmlcontent   = {'Content-Type': 'text/html'}
     , asciicontent  = {'Content-Type': 'text/ascii'}
@@ -298,9 +298,9 @@ module.exports = function(cb){
     next();
   });
 
-  server.listen(deflt.port, function() {
+  server.listen(conf.frame.port, function() {
     log.info(ok
-            , " ----> frame view server up and running @" + deflt.port
+            , " ----> frame view server up and running http://" +conf.frame.server + ":" + conf.frame.port
             );
     if(_.isFunction(cb)){
       cb();
