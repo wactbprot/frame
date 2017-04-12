@@ -1,23 +1,21 @@
 module.exports = function(cb){
   var _       = require("underscore")
-    , prog    = require("commander")
     , bunyan  = require("bunyan")
     , restify = require("restify")
     , send    = require("./lib/send") // to browser
     , receive = require("./lib/receive") // from browser
     , jsnhtml = require("./lib/jsnhtml")
     , hc      = require("./lib/template")
-    , conf     = require("../../lib/conf")
+    , conf    = require("../../lib/conf")
     , pj      = require("./package.json")
     , broker  = require("sc-broker")
     , server  = restify.createServer({name: conf.frame.appname})
     , log     = bunyan.createLogger({name: conf.frame.appname})
     , mem     = broker.createClient({port: conf.mem.port})
-    , ok      = {ok:true}
     , htmlcontent   = {'Content-Type': 'text/html'}
     , asciicontent  = {'Content-Type': 'text/ascii'}
-
-  prog.version(pj.version).parse(process.argv);
+    , ok      = {ok:true}
+    , err;
 
   server.pre(restify.pre.sanitizePath());
   server.use(restify.queryParser());
@@ -159,7 +157,6 @@ module.exports = function(cb){
   server.get("/:id/exchange/:exchkey/:subkey", function(req, res, next){
     mem.get([req.params.id], function(err, mp){
       if(!err && mp){
-
         send.exch(req, function(err, jsn){
           if(!err && jsn){
             res.writeHead(200, htmlcontent);
