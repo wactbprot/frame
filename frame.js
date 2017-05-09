@@ -1,23 +1,21 @@
 module.exports = function(cb){
-  var prog    = require("commander")
+  var _       = require("underscore")
     , bunyan  = require("bunyan")
-    , _       = require("underscore")
     , restify = require("restify")
     , send    = require("./lib/send") // to browser
     , receive = require("./lib/receive") // from browser
     , jsnhtml = require("./lib/jsnhtml")
     , hc      = require("./lib/template")
-    , deflt   = require("./lib/default")
+    , conf    = require("../../lib/conf")
     , pj      = require("./package.json")
     , broker  = require("sc-broker")
-    , server  = restify.createServer({name: deflt.appname})
-    , log     = bunyan.createLogger({name: deflt.appname})
-    , mem     = broker.createClient({port: deflt.mem.port})
-    , ok      = {ok:true}
+    , server  = restify.createServer({name: conf.frame.appname})
+    , log     = bunyan.createLogger({name: conf.frame.appname})
+    , mem     = broker.createClient({port: conf.mem.port})
     , htmlcontent   = {'Content-Type': 'text/html'}
     , asciicontent  = {'Content-Type': 'text/ascii'}
-
-  prog.version(pj.version).parse(process.argv);
+    , ok      = {ok:true}
+    , err;
 
   server.pre(restify.pre.sanitizePath());
   server.use(restify.queryParser());
@@ -159,7 +157,6 @@ module.exports = function(cb){
   server.get("/:id/exchange/:exchkey/:subkey", function(req, res, next){
     mem.get([req.params.id], function(err, mp){
       if(!err && mp){
-
         send.exch(req, function(err, jsn){
           if(!err && jsn){
             res.writeHead(200, htmlcontent);
@@ -298,9 +295,9 @@ module.exports = function(cb){
     next();
   });
 
-  server.listen(deflt.port, function() {
+  server.listen(conf.frame.port, function() {
     log.info(ok
-            , " ----> frame view server up and running @" + deflt.port
+            , " ----> frame view server up and running http://" +conf.frame.server + ":" + conf.frame.port
             );
     if(_.isFunction(cb)){
       cb();

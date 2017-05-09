@@ -1,6 +1,9 @@
 (function($){
-  // once at the begining
-  var $content_link =  $("#content_link")
+  var $title = $("#title")
+    , no     = $title.data("no")
+    $("#idx_" + no).addClass("active");
+ // once at the begining
+  var $content_link =  $("#content_link");
   $.get( $content_link.attr("href"), function( html ) {
     $content_link.replaceWith( function() {
       return $(html).hide().fadeIn(300);
