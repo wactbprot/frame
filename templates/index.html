@@ -9,7 +9,7 @@
     <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
     <meta http-equiv="pragma" content="no-cache" />
     <!--    -->
-    <title id="title" data-no="{{no}}">{{mpid}}</title>
+    <title id="title" data-no="{{no}}">{{title}}/{{struct}}</title>
   </head>
   <body>
     <link rel="stylesheet" href="/css/bootstrap.css">
@@ -102,7 +102,9 @@
       </div>
       <div class="col-md-6">
         <h4>description</h4>
-        {{description}}
+	{{description}}
+	<h4>container description</h4>
+        {{contdescr}}
       </div>
       <div class="col-md-2">
         <h4>links</h4>
