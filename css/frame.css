@@ -1,3 +1,6 @@
+body {
+    padding-top: 70px;
+}
 .executed {
     opacity: 0.8;
     background: #5FB404;
