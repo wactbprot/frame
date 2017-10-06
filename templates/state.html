@@ -98,6 +98,15 @@
               {{niceValue Value}}
             </p>
             {{/if}}
+
+            {{#if Container}}
+            <h4>Run Container</h4>
+            <p>
+	      Load and Run container: {{Container}} of measurement program
+	      definiteion: {{Mp}}: <a href='{{toMpPath this}}' target='_blank'>{{toMpPath this}}</a>
+            </p>
+            {{/if}}
+	    
           </div>
         </div>
         {{/each}}
