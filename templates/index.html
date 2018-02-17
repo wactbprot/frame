@@ -8,87 +8,86 @@
     <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
     <meta http-equiv="pragma" content="no-cache" />
     <!--    -->
-    <title>{{mpid}}</title>
+    <title id="title" data-no="{{no}}">{{mpid}}@{{struct}}: {{title}}</title>
   </head>
   <body>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/frame.css">
     <link rel="shortcut icon" href="/favicon.ico?v=2" />
-
     <nav class="navbar navbar-inverse  navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand">{{name}} </a>
+          <a class="navbar-brand">{{name}}</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-        {{#container.Title}}
-        <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-         aria-expanded="false">{{.}}<span class="caret">
-        </span>
-          </a>
+            {{#container.Title}}
+            <li class="dropdown"  id="idx_{{@index}}" >
+              <a class="dropdown-toggle"
+		         data-toggle="dropdown"
+		         role="button"
+                 aria-expanded="false">{{@index}}: {{.}}<span class="caret"> </span>
+              </a>
               <ul class="dropdown-menu" role="menu">
-        <li>
-          <a href="/{{../mpid}}/{{@index}}/elements/frame">elements</a>
-        </li>
+                <li>
+                  <a href="/{{../mpid}}/{{@index}}/elements/frame">elements</a>
+                </li>
                 <li>
                   <a href="/{{../mpid}}/{{@index}}/state/frame">state</a>
                 </li>
+              </ul>
+            </li>
+            {{/container.Title}}
           </ul>
-        </li>
-        {{/container.Title}}
-          </ul>
-      <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-         role="button" aria-expanded="false">Controlls
-        <span class="caret"></span></a>
+                 role="button" aria-expanded="false">Controlls
+                <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
         <li>
           <button class = 'exchange-button btn btn-sm btn-primary btn-block'
-              data-cmd ='cmd=load;run'
-              data-method = 'PUT'
-              data-path ='/{{mpid}}/{{no}}/ctrl'>
+                  data-cmd ='cmd=load;run'
+                  data-method = 'PUT'
+                  data-path ='/{{mpid}}/{{no}}/ctrl'>
             load&run
           </button>
         </li>
         <li>
           <button class = 'exchange-button btn btn-sm btn-default btn-block'
-            data-cmd ='cmd=load'
-            data-method = 'PUT'
-            data-path ='/{{mpid}}/{{no}}/ctrl'>
+                  data-cmd ='cmd=load'
+                  data-method = 'PUT'
+                  data-path ='/{{mpid}}/{{no}}/ctrl'>
           load
         </button>
         </li>
         <li>
           <button class = 'exchange-button btn btn-sm btn-default btn-block'
-            data-cmd ='cmd=mon'
-            data-method = 'PUT'
-            data-path ='/{{mpid}}/{{no}}/ctrl'>
+                  data-cmd ='cmd=mon'
+                  data-method = 'PUT'
+                  data-path ='/{{mpid}}/{{no}}/ctrl'>
           mon
         </button>
         </li>
         <li>
           <button class = 'exchange-button btn btn-sm btn-default btn-block'
-              data-cmd ='cmd=run'
-            data-method = 'PUT'
-            data-path ='/{{mpid}}/{{no}}/ctrl'>
+                  data-cmd ='cmd=run'
+                  data-method = 'PUT'
+                  data-path ='/{{mpid}}/{{no}}/ctrl'>
           run
         </button>
         </li>
-
         <li>
-          <button class = 'exchange-button btn btn-sm btn-danger btn-block'
-              data-cmd ='stop'
-              data-method = 'PUT'
-              data-path ='/{{mpid}}/{{no}}/ctrl'>
-            stop
-          </button>
-        </li>
-          </ul>
+            <button class = 'exchange-button btn btn-sm btn-danger btn-block'
+                    data-cmd ='cmd=stop'
+                    data-method = 'PUT'
+                    data-path ='/{{mpid}}/{{no}}/ctrl'>
+                    stop
+                  </button>
+                </li>
+              </ul>
             </li>
-      </ul>
+          </ul>
         </div>
       </div>
     </nav>
@@ -100,7 +99,9 @@
       </div>
       <div class="col-md-6">
         <h4>description</h4>
-        {{description}}
+	{{description}}
+	<h4>container description</h4>
+        {{contdescr}}
       </div>
       <div class="col-md-2">
 	<h4>links</h4>
@@ -110,18 +111,19 @@
 	</p>
 	<p>
 	  <a target="_blank"
-	     href="http://localhost:5984/vl_db/_design/dbmp/_list/overview/mpdocs" >measurement definitions</a>
+	     href="http://localhost:5984/vl_db/_design/dbmp/_list/overview/mpdocs">measurement definitions</a>
 	</p>
 	<p>
 	  <a target="_blank"
-	     href="http://localhost:5984/vl_db/_design/dbmp/plot.html" >diagramme</a>
+	     href="http://localhost:5984/vl_db/_design/dbmp/plot.html">diagramme</a>
 	</p>
-      </div>
-      <div class="col-md-1">
-	<button id="msgbtn" class = 'exchange-button btn btn-sm btn-primary btn-block'
-    data-cmd ='cmd=ok'
-		data-method = 'PUT'
-		data-path = '/{{mpid}}/{{no}}/message'>
+    </div>
+    <div class="col-md-1">
+	<button id="msgbtn"
+            class = 'exchange-button btn btn-sm btn-primary btn-block'
+            data-cmd ='cmd=ok'
+		    data-method = 'PUT'
+		    data-path = '/{{mpid}}/{{no}}/message'>
           ok
         </button>
       </div>

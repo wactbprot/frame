@@ -4,20 +4,28 @@
     {{#if Certificate}}
     <li class="text-muted">
       <label>
-	Certificate: <b>{{Certificate}}</b>,
-	Issue: <b>{{Issue}} </b>
+        Certificate: <b>{{Certificate}}</b>,
+        Issue: <b>{{Issue}} </b>
       </label>
       <a target='_blank'
-	  title="Customer: {{Customer}}, Device:{{Device}}, ToDo:
-				      {{ToDoType}}"
-	 href='http://localhost:5984/_utils/document.html?vl_db_work/{{Id}}'>F</a>
+         title="Customer: {{Customer}}, Device:{{Device}}, ToDo:
+                {{ToDoType}}"
+         href='http://localhost:5984/_utils/#database/vl_db_work/{{Id}}'>F</a>
       <a target='_blank'
-	  title="Customer: {{Customer}}, Device:{{Device}}, ToDo:
-				      {{ToDoType}}"
-	 href='http://localhost:5984/vl_db/applications/diwan2.html?id={{Id}}'>D</a>
+         title="Customer: {{Customer}}, Device:{{Device}}, ToDo:
+                {{ToDoType}}"
+         href='http://localhost:5984/vl_db/applications/diwan2.html?id={{Id}}'>D</a>
     </li>
-    {{else}}
-    <li> no document loaded</li>
+    {{/if}}
+    {{#if Measurement}}
+    <label>
+      meas. doc:
+      <a target='_blank'
+         title="Measurement document in vl_db_work@localhost"
+         href='http://localhost:5984/_utils/#database/vl_db_work/{{Id}}'>
+	<b>{{Id}}</b>
+      </a>
+    </label>
     {{/if}}
     {{/cdid}}
   </ul>

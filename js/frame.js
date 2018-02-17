@@ -1,6 +1,9 @@
 (function($){
-  // once at the begining
-  var $content_link =  $("#content_link")
+  var $title = $("#title")
+    , no     = $title.data("no")
+    $("#idx_" + no).addClass("active");
+ // once at the begining
+  var $content_link =  $("#content_link");
   $.get( $content_link.attr("href"), function( html ) {
     $content_link.replaceWith( function() {
       return $(html).hide().fadeIn(300);
@@ -54,11 +57,11 @@
       , path    = $msgid.data("path")
     $.get(path, function( msg ) {
       if((msg != "no") && (msg != "ok")){
-        $msgcnt.replaceWith("<p id='msgcnt'>" + msg + "</p>")
-        $msgbtn.fadeIn()
+          $msgcnt.replaceWith("<p id='msgcnt'>" + msg + "</p>")
+          $msgbtn.css("opacity" , 0.99);
       } else {
-        $msgcnt.replaceWith("<p id='msgcnt'>none</p>")
-        $msgbtn.fadeOut()
+          $msgcnt.replaceWith("<p id='msgcnt'>no current message</p>")
+          $msgbtn.css("opacity" , 0.2);
       }
     });
   }, 1000)

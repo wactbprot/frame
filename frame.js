@@ -62,7 +62,7 @@ server.use(cors.actual)
   });
 
   server.put("/:mpid/:container/message", function(req, res, next){
-    res.writeHead(200, htmlcontent);
+    res.writeHead(200, asciicontent);
     receive.message(req, function(err){
       if(!err){
         res.end();
@@ -289,8 +289,9 @@ server.use(cors.actual)
     mem.get([req.params.id], function(err, mp){
       if(!err && mp){
         send.message(req, function(err, msg){
-          if(!err){
-            res.write(msg);
+            if(!err){
+		res.writeHead(202, asciicontent);
+		res.write(msg);
           }else{
             // error
           }
