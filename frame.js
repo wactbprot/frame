@@ -2,6 +2,7 @@ module.exports = function(cb){
   var _       = require("underscore")
     , bunyan  = require("bunyan")
     , restify = require("restify")
+    , corsM   = require('restify-cors-middleware')
     , send    = require("./lib/send") // to browser
     , receive = require("./lib/receive") // from browser
     , jsnhtml = require("./lib/jsnhtml")
@@ -17,25 +18,34 @@ module.exports = function(cb){
     , ok      = {ok:true}
     , err;
 
-  server.pre(restify.pre.sanitizePath());
-  server.use(restify.queryParser());
-  server.use(restify.bodyParser());
-  server.use(function crossOrigin(req,res,next){
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    return next();
-  });
 
-  server.get( "/css/:file", restify.serveStatic({
+  server.pre(restify.pre.sanitizePath());
+  server.use(restify.plugins.queryParser({
+    mapParams: true
+  }));
+  server.use(restify.plugins.bodyParser({
+    mapParams: true
+  }));
+  const cors = corsM({
+      preflightMaxAge: 5, //Optional
+      origins: ['*'],
+      allowHeaders: ['API-Token'],
+      exposeHeaders: ['API-Token-Expiry']
+  })
+
+server.pre(cors.preflight)
+server.use(cors.actual)
+
+  server.get( "/css/:file", restify.plugins.serveStatic({
     'directory': __dirname
   }));
-  server.get( "/fonts/:file", restify.serveStatic({
+  server.get( "/fonts/:file", restify.plugins.serveStatic({
     'directory': __dirname
   }));
-  server.get( "/js/:file", restify.serveStatic({
+  server.get( "/js/:file", restify.plugins.serveStatic({
     'directory': __dirname
   }));
-  server.get( "/favicon.ico", restify.serveStatic({
+  server.get( "/favicon.ico", restify.plugins.serveStatic({
     'directory': __dirname
   }));
 
