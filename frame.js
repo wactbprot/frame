@@ -56,6 +56,9 @@ server.use(cors.actual)
     receive.exch(req, function(err){
       if(!err){
         res.end();
+      } else {
+        log.error(err
+                     , "request failed");
       }
     });
     next();
@@ -66,6 +69,9 @@ server.use(cors.actual)
     receive.message(req, function(err){
       if(!err){
         res.end();
+      } else {
+        log.error(err
+                     , "request failed");
       }
     });
     next();
@@ -76,6 +82,9 @@ server.use(cors.actual)
     receive.cdhandle(req, function(err){
       if(!err){
         res.end();
+      } else {
+        log.error(err
+                     , "request failed");
       }
     });
     next();
@@ -86,6 +95,9 @@ server.use(cors.actual)
     receive.ctrl(req, function(err){
       if(!err){
         res.end();
+      } else {
+        log.error(err
+                     , "request failed");
       }
     });
     next();
@@ -95,6 +107,9 @@ server.use(cors.actual)
     receive.state(req, function(err){
       if(!err){
         res.end();
+      } else {
+        log.error(err
+                     , "request failed");
       }
     });
     next();

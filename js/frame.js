@@ -31,10 +31,12 @@
     }, 5000);
 
     $.ajax({
-      method: method,
-      url: path,
-      data: "" + cmd
-    });
+        "method": method
+        , "processData": false
+        , "contentType": "application/json"
+        , "url": path
+        , "data": JSON.stringify({"cmd":cmd})
+      });
   });
 
   // exchange select
@@ -43,9 +45,11 @@
       , path    = $this.data("path")
       , value   = $this.children( "option:selected" ).val()
     $.ajax({
-      method: "PUT",
-      url: path,
-      data: "" + value
+      "method": "PUT"
+    , "processData": false
+    , "contentType": "application/json"
+    , "url": path
+    , "data": JSON.stringify({"value":value})
     });
   });
 
@@ -116,13 +120,16 @@
                            var $html_child = $html.children(".usrinput,.poll")
                              , value       = $html_child.val()
                              , path        = $html_child.data("path");
+
                            if($html_child.hasClass("number")){
                              value = value.replace(/,/g, ".")
                            }
                            $.ajax({
-                             method: "PUT",
-                             url: path,
-                             data: value
+                              "method": "PUT"
+                            , "processData": false
+                            , "contentType": "application/json"
+                            , "url": path
+                            , "data": JSON.stringify({"value":value})
                            });
                          });
                        }
