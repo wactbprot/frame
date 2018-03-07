@@ -8,19 +8,19 @@
         "url": "https://github.com/wactbprot/frame"
     },
     "dependencies": {
-        "underscore":">=1.8.3",
-        "restify":">=3.0.3",
-        "restify-cors-middleware":">=1.1.0",
-        "bunyan":">=1.3.5",
-        "sc-broker":">=2.1.0",
-	    "handlebars":">=1.3.0"
+        "underscore": ">=1.8.3",
+        "restify": ">=3.0.3",
+        "restify-cors-middleware": ">=1.1.0",
+        "bunyan": ">=1.3.5",
+        "sc-broker": ">=2.1.0",
+        "handlebars": ">=1.3.0"
     },
     "scripts": {
         "start": "bin/start | bunyan -l info"
     },
     "devDependencies": {
-        "mocha": ">=2.2.5",
-        "istanbul": ">=0.3.14"
+        "istanbul": ">=0.3.14",
+        "mocha": "^5.0.2"
     },
     "optionalDependencies": {},
     "engines": {
