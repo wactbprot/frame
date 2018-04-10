@@ -10,21 +10,21 @@
         <div class='parallel  panel panel-default' >
           <div  class='panel-heading {{State}}'>
             <button class = 'exchange-button btn btn-xs'
-                    data-cmd ='cmd=ready'
+                    data-cmd ='ready'
                     data-method = 'PUT'
                     data-path ='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}'
                     type='submit'><span title="set task state ready"
  					class="glyphicon glyphicon-refresh"
 					aria-hidden="true"></span></button>
             <button class = 'exchange-button btn btn-xs'
-                    data-cmd ='cmd=executed'
+                    data-cmd ='executed'
                     data-method = 'PUT'
                     data-path ='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}'
                     type='submit'><span title="set task state executed"
 					class="glyphicon glyphicon-ok"
 					aria-hidden="true"></span></button>
 	    <button class = 'exchange-button btn btn-xs'
-                    data-cmd ='cmd=working'
+                    data-cmd ='working'
                     data-method = 'PUT'
                     data-path ='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}'
                     type='submit'><span title="set task state working"
@@ -106,7 +106,7 @@
 	      definiteion: {{Mp}}: <a href='{{toMpPath this}}' target='_blank'>{{toMpPath this}}</a>
             </p>
             {{/if}}
-	    
+
           </div>
         </div>
         {{/each}}
