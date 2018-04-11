@@ -35,7 +35,7 @@ module.exports = function(cb){
     mapParams: true
   }));
   const cors = corsM({
-      origins: ['http://localhost:5984', 'http://*.berlin.ptb.de:5984'],
+      origins: ['*'],
       allowHeaders: ['*'],
       exposeHeaders: ['*']
   })
