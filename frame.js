@@ -10,11 +10,19 @@ module.exports = function(cb){
     , conf    = require("../../lib/conf")
     , pj      = require("./package.json")
     , broker  = require("sc-broker")
-    , server  = restify.createServer({name: conf.frame.appname})
+    , server  = restify.createServer({name: conf.frame.appname,
+                                      strictRouting: true})
     , log     = bunyan.createLogger({name: conf.frame.appname})
     , mem     = broker.createClient({port: conf.mem.port})
-    , htmlcontent   = {'Content-Type': 'text/html'}
-    , asciicontent  = {'Content-Type': 'text/ascii'}
+    , htmlcontent   = {'Content-Type': 'text/html',
+                       'Access-Control-Allow-Origin': '*',
+                       'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT, OPTIONS, HEAD'
+                     }
+    , asciicontent  = {'Content-Type': 'text/ascii',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT, OPTIONS, HEAD'
+
+                      }
     , ok      = {ok:true}
     , err;
 
@@ -27,27 +35,14 @@ module.exports = function(cb){
     mapParams: true
   }));
   const cors = corsM({
-      preflightMaxAge: 5, //Optional
-      origins: ['*'],
-      allowHeaders: ['API-Token'],
-      exposeHeaders: ['API-Token-Expiry']
+      origins: ['http://localhost:5984', 'http://*.berlin.ptb.de:5984'],
+      allowHeaders: ['*'],
+      exposeHeaders: ['*']
   })
 
 server.pre(cors.preflight)
 server.use(cors.actual)
 
-  server.get( "/css/:file", restify.plugins.serveStatic({
-    'directory': __dirname
-  }));
-  server.get( "/fonts/:file", restify.plugins.serveStatic({
-    'directory': __dirname
-  }));
-  server.get( "/js/:file", restify.plugins.serveStatic({
-    'directory': __dirname
-  }));
-  server.get( "/favicon.ico", restify.plugins.serveStatic({
-    'directory': __dirname
-  }));
 
   // ---------- put requests
   server.put("/:mpid/exchange/:l1/:l2", function(req, res, next){
@@ -102,7 +97,8 @@ server.use(cors.actual)
     });
     next();
   });
- server.put("/:mpid/:no/state/:seq/:par", function(req, res, next){
+
+  server.put("/:mpid/:no/state/:seq/:par", function(req, res, next){
     res.writeHead(200, htmlcontent);
     receive.state(req, function(err){
       if(!err){
@@ -117,18 +113,14 @@ server.use(cors.actual)
 
 
   // ---------- get requests
-  server.get("/:id/:container/elements", function(req, res, next){
+  server.get("/:id/id", function(req, res, next){
     mem.get([req.params.id], function(err, mp){
       if(!err && mp){
-        send.elements(req, function(err, jsn){
+        send.cdid(req, function(err, jsn){
           if(!err && jsn){
             res.writeHead(200, htmlcontent);
-            jsnhtml.elements(req, jsn, function(err, html){
-              if(!err){
-                res.write(html);
-              }else{
-                // error
-              }
+            jsnhtml.cdid(req, jsn, function(err, html){
+              res.write(html);
               res.end();
             });
           }else{
@@ -210,38 +202,8 @@ server.use(cors.actual)
     next();
   });
 
-  server.get("/:id/:container/state", function(req, res, next){
-    mem.get([req.params.id], function(err, mp){
-      if(!err && mp){
-        send.task_state(req, function(err, jsn){
-          if(!err && jsn){
-            res.writeHead(200, htmlcontent);
-            jsnhtml.task_state(req, jsn, function(err, html){
-              if(!err){
-                res.write(html);
-              }else{
-                // error
-              }
-              res.end();
-            });
-          }else{
-            res.writeHead(503, htmlcontent);
-            log.error(err
-                     , "request failed");
-            res.write(hc["error"](err));
-            res.end();
-          }
-        });
-      }else{
-        res.writeHead(202,asciicontent);
-        res.write("mp not available");
-        res.end();
-      }
-    });
-    next();
-  });
-
-  server.get("/:id/:container/:struct/frame", function(req, res, next){
+  server.get("/:id/:container/state/frame", function(req, res, next){
+    req.params.struct = "state";
     mem.get([req.params.id], function(err, mp){
       if(!err && mp){
         send.meta(req, function(err, jsn){
@@ -265,7 +227,7 @@ server.use(cors.actual)
           }
         });
       }else{
-        res.writeHead(202,asciicontent);
+        res.writeHead(202, asciicontent);
         res.write("mp not available");
         res.end();
       }
@@ -273,14 +235,83 @@ server.use(cors.actual)
     next();
   });
 
-  server.get("/:id/id", function(req, res, next){
+  server.get("/:id/:container/elements/frame", function(req, res, next){
+    req.params.struct = "elements";
     mem.get([req.params.id], function(err, mp){
       if(!err && mp){
-        send.cdid(req, function(err, jsn){
+        send.meta(req, function(err, jsn){
           if(!err && jsn){
             res.writeHead(200, htmlcontent);
-            jsnhtml.cdid(req, jsn, function(err, html){
-              res.write(html);
+            jsnhtml.frame(req, jsn, function(err, html){
+
+              if(!err){
+                res.write(html);
+              }else{
+                //error
+              }
+              res.end();
+            });
+          }else{
+            res.writeHead(503, htmlcontent);
+            log.error(err
+                     , "request failed");
+            res.write(hc["error"](err));
+            res.end();
+          }
+        });
+      }else{
+        res.writeHead(202, asciicontent);
+        res.write("mp not available");
+        res.end();
+      }
+    });
+    next();
+  });
+
+  server.get("/:id/:container/state", function(req, res, next){
+
+    mem.get([req.params.id], function(err, mp){
+      if(!err && mp){
+        send.task_state(req, function(err, jsn){
+          if(!err && jsn){
+            res.writeHead(200, htmlcontent);
+            jsnhtml.task_state(req, jsn, function(err, html){
+              if(!err){
+                res.write(html);
+              }else{
+                // error
+              }
+              res.end();
+            });
+          }else{
+            //res.writeHead(503, htmlcontent);
+            log.error(err
+                     , "request failed");
+            res.write(hc["error"](err));
+            res.end();
+          }
+        });
+      }else{
+        res.writeHead(202, asciicontent);
+        res.write("mp not available");
+        res.end();
+      }
+    });
+    next();
+  });
+
+  server.get("/:id/:container/elements", function(req, res, next){
+    mem.get([req.params.id], function(err, mp){
+      if(!err && mp){
+        send.elements(req, function(err, jsn){
+          if(!err && jsn){
+            res.writeHead(200, htmlcontent);
+            jsnhtml.elements(req, jsn, function(err, html){
+              if(!err){
+                res.write(html);
+              }else{
+                // error
+              }
               res.end();
             });
           }else{
@@ -320,6 +351,19 @@ server.use(cors.actual)
     });
     next();
   });
+
+  server.get( "/css/:file", restify.plugins.serveStatic({
+    'directory': __dirname
+  }));
+  server.get( "/fonts/:file", restify.plugins.serveStatic({
+    'directory': __dirname
+  }));
+  server.get( "/js/:file", restify.plugins.serveStatic({
+    'directory': __dirname
+  }));
+  server.get( "/favicon.ico", restify.plugins.serveStatic({
+    'directory': __dirname
+  }));
 
   server.listen(conf.frame.port, function() {
     log.info(ok
