@@ -1,48 +1,46 @@
-<div class='state row' data-path='/{{mpid}}/{{no}}/state'>
+<div class='state row mx-auto' data-path='/{{mpid}}/{{no}}/state'>
+
   {{#each taskstate}}
-  <div class='col-sm-4'>
-    <div class='serial panel panel-default'>
-      <div  class='panel-heading'>
-        <h3 class='panel-title'>Step: {{@index}}</h3>
-      </div>
-      <div class='panel-body'>
+  <div class='col-sm-4 serial bg-light'>
+      <h4>Step: {{@index}}</h4>
+      <p>
         {{#each step}}
-        <div class='parallel  panel panel-default' >
-          <div  class='panel-heading {{State}}'>
-            <button class = 'exchange-button btn btn-xs'
+        <div class='parallel {{State}} border border-secondary' >
+          <p>
+            <button class = 'btn btn-outline-secondary exchange-button btn-xs'
                     data-cmd ='ready'
                     data-method = 'PUT'
                     data-path ='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}'
-                    type='submit'><span title="set task state ready"
- 					class="glyphicon glyphicon-refresh"
-					aria-hidden="true"></span></button>
-            <button class = 'exchange-button btn btn-xs'
+                    type='submit'>
+                    set ready
+            </button>
+            <button class = 'btn btn-outline-secondary exchange-button'
                     data-cmd ='executed'
                     data-method = 'PUT'
                     data-path ='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}'
-                    type='submit'><span title="set task state executed"
-					class="glyphicon glyphicon-ok"
-					aria-hidden="true"></span></button>
-	    <button class = 'exchange-button btn btn-xs'
+                    type='submit'>
+                    set executed
+            </button>
+	          <button class = 'btn btn-outline-secondary exchange-button'
                     data-cmd ='working'
                     data-method = 'PUT'
                     data-path ='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}'
-                    type='submit'><span title="set task state working"
-					class="glyphicon glyphicon-cog"
-					aria-hidden="true"></span></button>
+                    type='submit'>
+                    set working
+            </button>
+          </p>
 
-	  </div>
           <div class='panel-body {{State}}'>
-            <h3>{{TaskName}}</h3>
+            <h5>{{TaskName}}</h5>
             {{#if Action}}
-            <h4>Action</h4>
+            <b>Action</b>
             <p>
               {{Action}}
             </p>
             {{/if}}
 
             {{#if  ExchangePath}}
-            <h4>Exchange Path</h4>
+            <b>Exchange Path</b>
             <p>
               <a href='http://localhost:8001/{{../../mpid}}/exchange/{{{toExchPath ExchangePath}}}' target='_blank'>{{ExchangePath}}
               </a>
@@ -50,7 +48,7 @@
             {{/if}}
 
             {{#if  StopIf}}
-            <h4>StopIf</h4>
+            <b>StopIf</b>
             <p>
               <a href='http://localhost:8001/{{../../mpid}}/exchange/{{toExchPath StopIf}}' target='_blank'>{{StopIf}}
               </a>
@@ -58,7 +56,7 @@
             {{/if}}
 
             {{#if  RunIf}}
-            <h4>RunIf</h4>
+            <b>RunIf</b>
             <p>
               <a href='http://localhost:8001/{{../../mpid}}/exchange/{{toExchPath RunIf}}' target='_blank'>{{RunIf}}
               </a>
@@ -66,52 +64,54 @@
             {{/if}}
 
             {{#if DefinitionClass}}
-            <h4>Definition Class</h4>
+            <b>Definition Class</b>
             <p>
               {{DefinitionClass}}
             </p>
             {{/if}}
 
             {{#if Repeat}}
-            <h4>Repeat</h4>
+            <b>Repeat</b>
             <p>
               {{Repeat}}
             </p>
             {{/if}}
 
             {{#if Wait}}
-            <h4>Wait</h4>
+            <b>Wait</b>
             <p>
               {{Wait}} (ms)
             </p>
             {{/if}}
             {{#if Comment}}
-            <h4>Description</h4>
+            <b>Description</b>
             <p>
               {{Comment}}
             </p>
             {{/if}}
 
             {{#if Value}}
-            <h4>Value</h4>
+            <b>Value</b>
             <p>
               {{niceValue Value}}
             </p>
             {{/if}}
 
             {{#if Container}}
-            <h4>Run Container</h4>
+            <b>Run Container</b>
             <p>
 	      Load and Run container: {{Container}} of measurement program
-	      definiteion: {{Mp}}: <a href='{{toMpPath this}}' target='_blank'>{{toMpPath this}}</a>
+	      definition: {{Mp}}: <a href='{{toMpPath this}}' target='_blank'>{{toMpPath this}}</a>
             </p>
             {{/if}}
 
           </div>
         </div>
         {{/each}}
-      </div>
-    </div>
+      </p>
+
+
+
   </div>
   {{/each}}
 </div>
