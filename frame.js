@@ -26,7 +26,6 @@ module.exports = function(cb){
     , ok      = {ok:true}
     , err;
 
-
   server.pre(restify.pre.sanitizePath());
   server.use(restify.plugins.queryParser({
     mapParams: true
@@ -42,7 +41,6 @@ module.exports = function(cb){
 
 server.pre(cors.preflight)
 server.use(cors.actual)
-
 
   // ---------- put requests
   server.put("/:mpid/exchange/:l1/:l2", function(req, res, next){
@@ -127,7 +125,6 @@ server.use(cors.actual)
             res.writeHead(503, htmlcontent);
             log.error(err
                      , "request failed");
-            res.write(hc["error"](err));
             res.end();
           }
         });
@@ -158,7 +155,6 @@ server.use(cors.actual)
             res.writeHead(503, htmlcontent);
             log.error(err
                      , "request failed");
-            res.write(hc["error"](err));
             res.end();
           }
         });
@@ -189,7 +185,6 @@ server.use(cors.actual)
             res.writeHead(503, htmlcontent);
             log.error(err
                      , "request failed");
-            res.write(hc["error"](err));
             res.end();
           }
         });
@@ -222,7 +217,6 @@ server.use(cors.actual)
             res.writeHead(503, htmlcontent);
             log.error(err
                      , "request failed");
-            res.write(hc["error"](err));
             res.end();
           }
         });
@@ -255,7 +249,6 @@ server.use(cors.actual)
             res.writeHead(503, htmlcontent);
             log.error(err
                      , "request failed");
-            res.write(hc["error"](err));
             res.end();
           }
         });
@@ -287,7 +280,6 @@ server.use(cors.actual)
             //res.writeHead(503, htmlcontent);
             log.error(err
                      , "request failed");
-            res.write(hc["error"](err));
             res.end();
           }
         });
@@ -318,7 +310,6 @@ server.use(cors.actual)
             res.writeHead(503, htmlcontent);
             log.error(err
                      , "request failed");
-            res.write(hc["error"](err));
             res.end();
           }
         });

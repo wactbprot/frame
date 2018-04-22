@@ -1,7 +1,6 @@
 <div class='state row rounded p-1' data-path='/{{mpid}}/{{no}}/state'>
   {{#each taskstate}}
-  <div class='col-sm-4 serial p-1'>
-      
+  <div class='col-sm-3 serial p-1'>
       <p>
         {{#each step}}
         <div class='parallel p-1 ' >
@@ -31,7 +30,7 @@
           </p>
 
           <div class='p-2 {{State}}'>
-            <h5>{{TaskName}}</h5>
+            <h5>{{TaskName}} ({{Position.Seq}}/{{Position.Par}})</h5>
             {{#if Action}}
             <b>Action</b>
             <p>
