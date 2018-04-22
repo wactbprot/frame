@@ -34,15 +34,15 @@
             <ul class="list-group">
                 {{#container.Title}}
                 <li class="list-group-item" id="idx_{{@index}}">
-                    <h4>{{@index}}: {{.}}<br>
+                    <h5>{{@index}}: {{.}}<br>
         <a class="badge badge-light" href="/{{../mpid}}/{{@index}}/elements/frame">elements</a>
         <a class="badge badge-light" href="/{{../mpid}}/{{@index}}/state/frame">state</a>
-    </h4>
+    </h5>
                 </li>
                 {{/container.Title}}
             </ul>
         </div>
-        <div class="col-8 p-3">
+        <div class="col-8 p-3 bg-light">
 
             <h3>Description</h3>
             <p>
@@ -54,7 +54,7 @@
             <p>
                 <a class="alert alert-primary"
                 role="alert"
-                id="content_link" 
+                id="content_link"
                 href="/{{mpid}}/{{no}}/{{struct}}">
         no content yet</a>
             </p>

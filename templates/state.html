@@ -1,114 +1,79 @@
 <div class='state row rounded p-1' data-path='/{{mpid}}/{{no}}/state'>
-  {{#each taskstate}}
-  <div class='col-sm-3 serial p-1'>
-      <p>
+    {{#each taskstate}}
+    <div class='col-sm-3 serial p-1 '>
         {{#each step}}
-        <div class='parallel p-1 ' >
-          <p>
-            <button class = 'btn exchange-button btn-xs badge badge-primary'
-                    data-cmd ='ready'
-                    data-method = 'PUT'
-                    data-path ='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}'
-                    type='submit'
-                    title="set this task to ready state leads to rerun this task">
-                    R
-            </button>
-            <button class = 'btn  exchange-button badge badge-primary'
-                    data-cmd ='executed'
-                    data-method = 'PUT'
-                    data-path ='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}'
-                    type='submit'title="set this task to executed state ">
-                    E
-            </button>
-	          <button class = 'btn  exchange-button badge badge-primary'
-                    data-cmd ='working'
-                    data-method = 'PUT'
-                    data-path ='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}'
-                    type='submit' title="set this task to working state">
-                    W
-            </button>
-          </p>
+        <div class='parallel p-1 {{State}}'>
 
-          <div class='p-2 {{State}}'>
-            <h5>{{TaskName}} ({{Position.Seq}}/{{Position.Par}})</h5>
-            {{#if Action}}
-            <b>Action</b>
-            <p>
-              {{Action}}
-            </p>
-            {{/if}}
 
-            {{#if  ExchangePath}}
-            <b>Exchange Path</b>
-            <p>
-              <a href='http://localhost:8001/{{../../mpid}}/exchange/{{{toExchPath ExchangePath}}}' target='_blank'>{{ExchangePath}}
+            <div class='p-1 bg-light'>
+                <p align='right'>
+                <button class='btn exchange-button btn-xs badge badge-secondary' data-cmd='ready' data-method='PUT' data-path='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}' type='submit' title="set this task to ready state leads to rerun this task">
+                                  ⟳
+                          </button>
+                <button class='btn exchange-button badge badge-secondary' data-cmd='executed' data-method='PUT' data-path='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}' type='submit' title="set this task to executed state ">
+                                  ✓
+                          </button>
+                <button class='btn exchange-button badge badge-secondary' data-cmd='working' data-method='PUT' data-path='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}' type='submit' title="set this task to working state">
+                                  ⚙
+                          </button>
+                </p>
+                <h6>{{TaskName}} ({{Position.Seq}}/{{Position.Par}})</h6> {{#if Action}}
+                <b>Action</b>
+                <p>
+                    {{Action}}
+                </p>
+                {{/if}} {{#if ExchangePath}}
+                <b>Exchange Path</b>
+                <p>
+                    <a href='http://localhost:8001/{{../../mpid}}/exchange/{{{toExchPath ExchangePath}}}' target='_blank'>{{ExchangePath}}
               </a>
-            </p>
-            {{/if}}
-
-            {{#if  StopIf}}
-            <b>StopIf</b>
-            <p>
-              <a href='http://localhost:8001/{{../../mpid}}/exchange/{{toExchPath StopIf}}' target='_blank'>{{StopIf}}
+                </p>
+                {{/if}} {{#if StopIf}}
+                <b>StopIf</b>
+                <p>
+                    <a href='http://localhost:8001/{{../../mpid}}/exchange/{{toExchPath StopIf}}' target='_blank'>{{StopIf}}
               </a>
-            </p>
-            {{/if}}
-
-            {{#if  RunIf}}
-            <b>RunIf</b>
-            <p>
-              <a href='http://localhost:8001/{{../../mpid}}/exchange/{{toExchPath RunIf}}' target='_blank'>{{RunIf}}
+                </p>
+                {{/if}} {{#if RunIf}}
+                <b>RunIf</b>
+                <p>
+                    <a href='http://localhost:8001/{{../../mpid}}/exchange/{{toExchPath RunIf}}' target='_blank'>{{RunIf}}
               </a>
-            </p>
-            {{/if}}
-
-            {{#if DefinitionClass}}
-            <b>Definition Class</b>
-            <p>
-              {{DefinitionClass}}
-            </p>
-            {{/if}}
-
-            {{#if Repeat}}
-            <b>Repeat</b>
-            <p>
-              {{Repeat}}
-            </p>
-            {{/if}}
-
-            {{#if Wait}}
-            <b>Wait</b>
-            <p>
-              {{Wait}} (ms)
-            </p>
-            {{/if}}
-            {{#if Comment}}
-            <b>Description</b>
-            <p>
-              {{Comment}}
-            </p>
-            {{/if}}
-
-            {{#if Value}}
-            <b>Value</b>
-            <p>
-              {{niceValue Value}}
-            </p>
-            {{/if}}
-
-            {{#if Container}}
-            <b>Run Container</b>
-            <p>
-	            Load and Run container: {{Container}} of measurement program
-	            definition: {{Mp}}: <a href='{{toMpPath this}}' target='_blank'>{{toMpPath this}}</a>
-            </p>
-            {{/if}}
-
-          </div>
+                </p>
+                {{/if}} {{#if DefinitionClass}}
+                <b>Definition Class</b>
+                <p>
+                    {{DefinitionClass}}
+                </p>
+                {{/if}} {{#if Repeat}}
+                <b>Repeat</b>
+                <p>
+                    {{Repeat}}
+                </p>
+                {{/if}} {{#if Wait}}
+                <b>Wait</b>
+                <p>
+                    {{Wait}} (ms)
+                </p>
+                {{/if}} {{#if Comment}}
+                <b>Description</b>
+                <p>
+                    {{Comment}}
+                </p>
+                {{/if}} {{#if Value}}
+                <b>Value</b>
+                <p>
+                    {{niceValue Value}}
+                </p>
+                {{/if}} {{#if Container}}
+                <b>Run Container</b>
+                <p>
+                    Load and Run container: {{Container}} of measurement program definition: {{Mp}}: <a href='{{toMpPath this}}' target='_blank'>{{toMpPath this}}</a>
+                </p>
+                {{/if}}
+            </div>
         </div>
         {{/each}}
-      </p>
-
-  </div>
-  {{/each}}
+    </div>
+    {{/each}}
 </div>
