@@ -1,36 +1,36 @@
-<div class='state row mx-auto' data-path='/{{mpid}}/{{no}}/state'>
-
+<div class='state row rounded p-1' data-path='/{{mpid}}/{{no}}/state'>
   {{#each taskstate}}
-  <div class='col-sm-4 serial bg-light'>
-      <h4>Step: {{@index}}</h4>
+  <div class='col-sm-4 serial p-1'>
+      
       <p>
         {{#each step}}
-        <div class='parallel {{State}} border border-secondary' >
+        <div class='parallel p-1 ' >
           <p>
-            <button class = 'btn btn-outline-secondary exchange-button btn-xs'
+            <button class = 'btn exchange-button btn-xs badge badge-primary'
                     data-cmd ='ready'
                     data-method = 'PUT'
                     data-path ='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}'
-                    type='submit'>
-                    set ready
+                    type='submit'
+                    title="set this task to ready state leads to rerun this task">
+                    R
             </button>
-            <button class = 'btn btn-outline-secondary exchange-button'
+            <button class = 'btn  exchange-button badge badge-primary'
                     data-cmd ='executed'
                     data-method = 'PUT'
                     data-path ='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}'
-                    type='submit'>
-                    set executed
+                    type='submit'title="set this task to executed state ">
+                    E
             </button>
-	          <button class = 'btn btn-outline-secondary exchange-button'
+	          <button class = 'btn  exchange-button badge badge-primary'
                     data-cmd ='working'
                     data-method = 'PUT'
                     data-path ='/{{../../mpid}}/{{../../no}}/state/{{Position.Seq}}/{{Position.Par}}'
-                    type='submit'>
-                    set working
+                    type='submit' title="set this task to working state">
+                    W
             </button>
           </p>
 
-          <div class='panel-body {{State}}'>
+          <div class='p-2 {{State}}'>
             <h5>{{TaskName}}</h5>
             {{#if Action}}
             <b>Action</b>
@@ -100,8 +100,8 @@
             {{#if Container}}
             <b>Run Container</b>
             <p>
-	      Load and Run container: {{Container}} of measurement program
-	      definition: {{Mp}}: <a href='{{toMpPath this}}' target='_blank'>{{toMpPath this}}</a>
+	            Load and Run container: {{Container}} of measurement program
+	            definition: {{Mp}}: <a href='{{toMpPath this}}' target='_blank'>{{toMpPath this}}</a>
             </p>
             {{/if}}
 
@@ -109,8 +109,6 @@
         </div>
         {{/each}}
       </p>
-
-
 
   </div>
   {{/each}}
