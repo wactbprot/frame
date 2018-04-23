@@ -23,7 +23,17 @@
       <a target='_blank'
          title="Measurement document in vl_db_work@localhost"
          href='http://localhost:5984/_utils/#database/vl_db_work/{{Id}}'>
-	<b>{{Id}}</b>
+	        <b>{{Id}}</b>
+      </a>
+    </label>
+    {{/if}}
+    {{#if State}}
+    <label>
+      state. doc:
+      <a target='_blank'
+         title="State document in vl_db_work@localhost"
+         href='http://localhost:5984/_utils/#database/vl_db_work/{{Id}}'>
+	        <b>{{Id}}</b>
       </a>
     </label>
     {{/if}}
